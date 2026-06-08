@@ -1,0 +1,64 @@
+# 💡 Insights — AI & Finance Intersection
+
+## Key Learnings from 6 Weeks of LLM Evaluation
+
+---
+
+## 1. The "Plausible but Wrong" Problem
+
+The most dangerous AI output in finance is not obviously wrong — it's **confidently plausible but subtly incorrect**. A response can be:
+- Professionally written ✅
+- Grammatically perfect ✅
+- Structurally logical ✅
+- Financially incorrect ❌
+
+**Example pattern:** An LLM might correctly identify that WACC should be used as the discount rate, then miscalculate it by using pre-tax cost of debt instead of after-tax, arriving at a plausible but wrong valuation.
+
+**Implication:** Finance AI tools require domain expert oversight, not just general quality review.
+
+---
+
+## 2. Regulatory Knowledge is a Hard Boundary
+
+LLMs showed strong performance on general financial concepts but significant weakness on:
+- Jurisdiction-specific regulatory details
+- Recent regulatory changes (post-training cutoff)
+- Nuanced compliance interpretations
+
+**Implication:** AI in regulatory finance (compliance, audit, EU funds) needs human-in-the-loop architecture.
+
+---
+
+## 3. Structured Prompting Dramatically Improves Output Quality
+
+Responses to well-structured prompts (clear context, specific question, defined format) were consistently superior to responses to vague prompts — even from the same model.
+
+**Implication:** Prompt engineering is a critical skill for finance professionals using AI tools.
+
+---
+
+## 4. RLHF Quality Depends on Evaluator Expertise
+
+The value of human feedback is directly proportional to the evaluator's domain depth. A general annotator and a finance professional with 15+ years experience will produce fundamentally different feedback signals — the latter detecting errors invisible to the former.
+
+**Implication:** Domain-specific RLHF is essential for enterprise finance AI applications.
+
+---
+
+## 5. AI Augments, Doesn't Replace, Financial Reasoning
+
+After evaluating hundreds of finance responses, the pattern is clear:
+- AI excels at: structure, summarization, breadth, speed
+- Humans excel at: judgment, nuance, regulatory interpretation, error detection
+
+The optimal workflow is **human-AI collaboration**, not substitution.
+
+---
+
+## Professional Development Impact
+
+This project significantly deepened my understanding of:
+- How large language models reason about financial topics
+- Where AI reliability breaks down in professional contexts
+- How to design evaluation frameworks for AI outputs
+- The intersection of financial expertise and AI development
