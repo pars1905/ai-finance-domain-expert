@@ -1,6 +1,6 @@
 # Projeleri anlayarak kullanma rehberi
 
-Bu üç proje AI yardımıyla hazırlanmış portföy prototipleridir. Mesleki deneyim,
+Bu altı proje AI yardımıyla hazırlanmış portföy prototipleridir. Mesleki deneyim,
 üretim sistemi veya gerçek müşteri başarısı olarak sunulmamalıdır. CV'de
 kullanırken kendi katkını, test ettiğin kapsamı ve açıklayabildiğin kodu anlat.
 
@@ -36,7 +36,7 @@ kullanırken kendi katkını, test ettiğin kapsamı ve açıklayabildiğin kodu
 
 Her proje için iki dakikalık İngilizce anlatım hazırla: sorun, girdi, yöntem,
 bulduğun hata, sınırlama ve sonraki geliştirme. Kodda anlamadığın satırları
-işaretleyip öğren. Canlı LLM entegrasyonu ve model eğitimi henüz yapılmadı.
+işaretleyip öğren. 04–06 projelerinde isteğe bağlı LLM açıklama adaptörü var; gerçek anahtarla çağrı henüz doğrulanmadı. Model eğitimi yapılmadı.
 
 Anlayıp kişisel olarak doğruladıktan sonra kullanılabilecek CV ifadesi:
 
@@ -45,3 +45,21 @@ financial-answer evaluation, evidence auditing, and paired evaluation release
 gates, using synthetic fixtures and automated tests.”
 
 Bu ifade canlı model performansı, müşteri etkisi veya ML mühendisliği kıdemi iddia etmez.
+
+
+## 04 — Bütçe sapması araştırması
+
+`budget.json` içindeki satış satırını hesap makinesiyle doğrula: 2.800 TL farkın 4.000 TL miktar ve −1.200 TL fiyat etkisine ayrıldığını göster. Bu neden gerçek nedenin kanıtı değildir? Malzeme maliyetindeki artış neden olumsuz? Mutlak eşiği değiştirip inceleme kuyruğunu tekrar çalıştır.
+
+## 05 — Tahsilat önceliklendirme
+
+`customers.json` içindeki A, C ve D müşterilerinin neden farklı işleme alındığını açıkla. İhtilaflı tutarları ve aktif ödeme sözlerini senaryo hesabından elle çıkar. Temel senaryodaki 5.650 TL'nin gerçekleşmiş veya tahmin edilmiş tahsilat değil, varsayımlı bir sonuç olduğunu anlat.
+
+## 06 — Tedarikçi teklif karşılaştırması
+
+A tedarikçisinin toplam 10.900 TL maliyetini bileşenlerinden hesapla. Teslimat ağırlığı artınca B neden öne geçiyor? D'nin eksik nakliye maliyetini sıfır kabul etmek neden yanlış olur? Ağırlıkları değiştir, tedarikçi seçiminin neden insanda kaldığını açıkla.
+
+## Yerel inceleme kaydı ve AI
+
+Bir rapor üretip `review_decision.py` ile inceleme kaydet; aynı kaydı tekrar gönderince yeni satır oluşmadığını doğrula. Bu kayıt gerçek kimlik doğrulama veya değiştirilemez denetim sistemi değildir. `--ai` ancak senin ortamında anahtar/model ayarlandığında dış servise istek yapar ve ücret doğurabilir. AI açıklaması denetlenmemiştir; hesaplar ve kararlarla karıştırılmaz.
+

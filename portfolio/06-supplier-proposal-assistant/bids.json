@@ -1,0 +1,103 @@
+{
+  "provenance": "Authored synthetic business examples. No client, Mercor, or personal data; no measured business impact.",
+  "currency": "TRY",
+  "quantity": 100,
+  "contract_years": 2,
+  "required_criteria": [
+    "warranty",
+    "security_review"
+  ],
+  "weights": {
+    "cost": "0.60",
+    "delivery": "0.25",
+    "payment": "0.15"
+  },
+  "sensitivity_weights": {
+    "delivery_priority": {
+      "cost": "0.20",
+      "delivery": "0.70",
+      "payment": "0.10"
+    },
+    "payment_priority": {
+      "cost": "0.20",
+      "delivery": "0.10",
+      "payment": "0.70"
+    }
+  },
+  "bids": [
+    {
+      "id": "supplier-A",
+      "currency": "TRY",
+      "unit_price": "100",
+      "freight": "200",
+      "setup": "500",
+      "annual_maintenance": "100",
+      "delivery_days": 30,
+      "payment_days": 30,
+      "criteria": {
+        "warranty": true,
+        "security_review": true
+      },
+      "evidence_ref": "synthetic-proposals.md#supplier-a"
+    },
+    {
+      "id": "supplier-B",
+      "currency": "TRY",
+      "unit_price": "110",
+      "freight": "0",
+      "setup": "0",
+      "annual_maintenance": "0",
+      "delivery_days": 10,
+      "payment_days": 60,
+      "criteria": {
+        "warranty": true,
+        "security_review": true
+      },
+      "evidence_ref": "synthetic-proposals.md#supplier-b"
+    },
+    {
+      "id": "supplier-C",
+      "currency": "TRY",
+      "unit_price": "90",
+      "freight": "500",
+      "setup": "0",
+      "annual_maintenance": "0",
+      "delivery_days": 20,
+      "payment_days": 30,
+      "criteria": {
+        "warranty": true,
+        "security_review": false
+      },
+      "evidence_ref": "synthetic-proposals.md#supplier-c"
+    },
+    {
+      "id": "supplier-D",
+      "currency": "TRY",
+      "unit_price": "95",
+      "freight": null,
+      "setup": "0",
+      "annual_maintenance": "0",
+      "delivery_days": 15,
+      "payment_days": 30,
+      "criteria": {
+        "warranty": true
+      },
+      "evidence_ref": "synthetic-proposals.md#supplier-d"
+    },
+    {
+      "id": "supplier-E",
+      "currency": "EUR",
+      "unit_price": "3",
+      "freight": "20",
+      "setup": "0",
+      "annual_maintenance": "0",
+      "delivery_days": 15,
+      "payment_days": 30,
+      "criteria": {
+        "warranty": true,
+        "security_review": true
+      },
+      "evidence_ref": "synthetic-proposals.md#supplier-e"
+    }
+  ]
+}

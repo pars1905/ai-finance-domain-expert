@@ -68,12 +68,16 @@ This project significantly deepened my understanding of:
 
 ## Runnable Finance AI Evaluation Portfolio
 
-Three AI-assisted Python prototypes with synthetic fixtures, 24 unit tests, and reproducible reports:
+Six AI-assisted Python prototypes with synthetic fixtures, 63 unit tests, and reproducible reports:
 
 1. [Financial Answer Evaluator](portfolio/01-financial-answer-evaluator/) — WACC, terminal value and margin checks.
 2. [Evidence Auditor](portfolio/02-evidence-auditor/) — exact quotations and period/unit-aware fact validation.
 3. [Evaluation Release Gate](portfolio/03-evaluation-release-gate/) — paired outcomes and quality/cost/latency gates.
+4. [Budget Variance Investigation Assistant](portfolio/04-budget-variance-assistant/) — price/volume bridges and analyst review.
+5. [Cash Collection Prioritization Workbench](portfolio/05-cash-collection-workbench/) — disputed/promise-aware queues and explicit cash scenarios.
+6. [Supplier Proposal Comparison Assistant](portfolio/06-supplier-proposal-assistant/) — comparable contract cost, eligibility and weight sensitivity.
 
 [Run all checks](portfolio/) · [12-project roadmap](portfolio/ROADMAP.md) · [Turkish learning guide](portfolio/LEARNING_GUIDE_TR.md)
 
-These are local portfolio prototypes, not production systems or real model benchmarks. No confidential client data is included. Roadmap projects 04–12 are planned, not implemented.
+These are local portfolio prototypes, not production systems or real model benchmarks. No confidential client data is included. Projects 04–06 include an optional model commentary adapter tested with mocked responses; no live model call has been verified. Roadmap projects 07–12 remain planned.
+

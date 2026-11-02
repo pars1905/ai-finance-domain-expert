@@ -1,0 +1,171 @@
+{
+  "project": "Supplier Proposal Comparison Assistant",
+  "input_sha256": "bfbe52d95283cbd036695893f5d7fca6a3f14baeba424eac02985f6b1dc1d896",
+  "data_provenance": "Authored synthetic business examples. No client, Mercor, or personal data; no measured business impact.",
+  "currency": "TRY",
+  "items": [
+    {
+      "id": "supplier-A",
+      "requires_human_review": true,
+      "evidence": [
+        "synthetic-proposals.md#supplier-a"
+      ],
+      "missing_fields": [],
+      "failed_criteria": [],
+      "total_cost": "10900",
+      "delivery_days": 30,
+      "payment_days": 30,
+      "cost_components": {
+        "goods": "10000",
+        "freight": "200",
+        "setup": "500",
+        "maintenance": "200"
+      },
+      "finding": "eligible_for_comparison"
+    },
+    {
+      "id": "supplier-B",
+      "requires_human_review": true,
+      "evidence": [
+        "synthetic-proposals.md#supplier-b"
+      ],
+      "missing_fields": [],
+      "failed_criteria": [],
+      "total_cost": "11000",
+      "delivery_days": 10,
+      "payment_days": 60,
+      "cost_components": {
+        "goods": "11000",
+        "freight": "0",
+        "setup": "0",
+        "maintenance": "0"
+      },
+      "finding": "eligible_for_comparison"
+    },
+    {
+      "id": "supplier-C",
+      "requires_human_review": true,
+      "evidence": [
+        "synthetic-proposals.md#supplier-c"
+      ],
+      "missing_fields": [],
+      "failed_criteria": [
+        "security_review"
+      ],
+      "total_cost": "9500",
+      "delivery_days": 20,
+      "payment_days": 30,
+      "cost_components": {
+        "goods": "9000",
+        "freight": "500",
+        "setup": "0",
+        "maintenance": "0"
+      },
+      "finding": "ineligible"
+    },
+    {
+      "id": "supplier-D",
+      "requires_human_review": true,
+      "evidence": [
+        "synthetic-proposals.md#supplier-d"
+      ],
+      "missing_fields": [
+        "freight"
+      ],
+      "failed_criteria": [],
+      "total_cost": null,
+      "finding": "incomplete"
+    },
+    {
+      "id": "supplier-E",
+      "requires_human_review": true,
+      "evidence": [
+        "synthetic-proposals.md#supplier-e"
+      ],
+      "missing_fields": [],
+      "failed_criteria": [],
+      "total_cost": null,
+      "finding": "currency_conversion_required"
+    }
+  ],
+  "quantity": 100,
+  "contract_years": 2,
+  "ranking": [
+    {
+      "id": "supplier-A",
+      "score": "65.00000000000000000000000000",
+      "components": {
+        "cost": "1",
+        "delivery": "0",
+        "payment": "0.3333333333333333333333333333"
+      }
+    },
+    {
+      "id": "supplier-B",
+      "score": "35.00000000000000000000000000",
+      "components": {
+        "cost": "0",
+        "delivery": "1",
+        "payment": "0.6666666666666666666666666667"
+      }
+    }
+  ],
+  "weights": {
+    "cost": "0.60",
+    "delivery": "0.25",
+    "payment": "0.15"
+  },
+  "sensitivity_rankings": {
+    "delivery_priority": [
+      {
+        "id": "supplier-B",
+        "score": "76.66666666666666666666666667",
+        "components": {
+          "cost": "0",
+          "delivery": "1",
+          "payment": "0.6666666666666666666666666667"
+        }
+      },
+      {
+        "id": "supplier-A",
+        "score": "23.33333333333333333333333333",
+        "components": {
+          "cost": "1",
+          "delivery": "0",
+          "payment": "0.3333333333333333333333333333"
+        }
+      }
+    ],
+    "payment_priority": [
+      {
+        "id": "supplier-B",
+        "score": "56.66666666666666666666666667",
+        "components": {
+          "cost": "0",
+          "delivery": "1",
+          "payment": "0.6666666666666666666666666667"
+        }
+      },
+      {
+        "id": "supplier-A",
+        "score": "43.33333333333333333333333333",
+        "components": {
+          "cost": "1",
+          "delivery": "0",
+          "payment": "0.3333333333333333333333333333"
+        }
+      }
+    ]
+  },
+  "decision": "human_selection_required",
+  "limitations": [
+    "Relative cost/delivery scores depend on the eligible comparison set.",
+    "Totals exclude tax, discounting and FX conversion; all bids must use comparable net terms.",
+    "Criteria and evidence references are supplied, not independently authenticated.",
+    "No purchase order is created; no supplier is automatically selected."
+  ],
+  "ai_commentary": {
+    "status": "not_requested"
+  },
+  "execution": "local decision support; no external actions performed"
+}

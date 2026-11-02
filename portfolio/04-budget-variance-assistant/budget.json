@@ -1,0 +1,45 @@
+{
+  "provenance": "Authored synthetic business examples. No client, Mercor, or personal data; no measured business impact.",
+  "currency": "TRY",
+  "period": "2026-10",
+  "policy": {
+    "absolute_threshold": "500",
+    "relative_threshold": "0.05"
+  },
+  "lines": [
+    {
+      "id": "sales",
+      "kind": "revenue",
+      "budget_qty": 100,
+      "budget_unit_price": "200",
+      "actual_qty": 120,
+      "actual_unit_price": "190",
+      "budget_total": "20000",
+      "actual_total": "22800"
+    },
+    {
+      "id": "materials",
+      "kind": "expense",
+      "budget_qty": 100,
+      "budget_unit_price": "80",
+      "actual_qty": 120,
+      "actual_unit_price": "85"
+    },
+    {
+      "id": "staff-cost",
+      "kind": "expense",
+      "budget_qty": 10,
+      "budget_unit_price": "500",
+      "actual_qty": 10,
+      "actual_unit_price": "500"
+    },
+    {
+      "id": "new-service",
+      "kind": "expense",
+      "budget_qty": 0,
+      "budget_unit_price": "50",
+      "actual_qty": 10,
+      "actual_unit_price": "50"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "provenance": "Authored synthetic business examples. No client, Mercor, or personal data; no measured business impact.",
+  "currency": "TRY",
+  "as_of": "2026-10-31",
+  "scenarios": {
+    "conservative": {
+      "1-30": "0.40",
+      "31-60": "0.20",
+      "61+": "0.10"
+    },
+    "base": {
+      "1-30": "0.65",
+      "31-60": "0.40",
+      "61+": "0.20"
+    },
+    "optimistic": {
+      "1-30": "0.80",
+      "31-60": "0.60",
+      "61+": "0.35"
+    }
+  },
+  "customers": [
+    {
+      "id": "customer-A",
+      "balance": "10000",
+      "disputed_amount": "2000",
+      "due_date": "2026-07-01",
+      "broken_promises": 2,
+      "last_contact_date": "2026-10-01"
+    },
+    {
+      "id": "customer-B",
+      "balance": "5000",
+      "disputed_amount": "0",
+      "due_date": "2026-10-11",
+      "broken_promises": 0,
+      "last_contact_date": "2026-10-20"
+    },
+    {
+      "id": "customer-C",
+      "balance": "3000",
+      "disputed_amount": "3000",
+      "due_date": "2026-08-01",
+      "broken_promises": 1
+    },
+    {
+      "id": "customer-D",
+      "balance": "4000",
+      "disputed_amount": "0",
+      "due_date": "2026-09-01",
+      "broken_promises": 0,
+      "promise_date": "2026-11-05"
+    },
+    {
+      "id": "customer-E",
+      "balance": "2500",
+      "disputed_amount": "0",
+      "due_date": "2026-11-10",
+      "broken_promises": 0
+    },
+    {
+      "id": "customer-F",
+      "balance": "0",
+      "disputed_amount": "0",
+      "due_date": "2026-08-01",
+      "broken_promises": 0
+    },
+    {
+      "id": "customer-G",
+      "balance": "2000",
+      "disputed_amount": "0",
+      "due_date": "2026-09-15",
+      "broken_promises": 1,
+      "promise_date": "2026-10-20"
+    }
+  ]
+}

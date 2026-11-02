@@ -1,0 +1,154 @@
+{
+  "project": "Cash Collection Prioritization Workbench",
+  "input_sha256": "414533af036d25af558698e9ee2bcdc15fa8f5d39a939455c355d5979020c1e2",
+  "data_provenance": "Authored synthetic business examples. No client, Mercor, or personal data; no measured business impact.",
+  "currency": "TRY",
+  "items": [
+    {
+      "id": "customer-A",
+      "balance": "10000",
+      "disputed_amount": "2000",
+      "undisputed_balance": "8000",
+      "days_overdue": 122,
+      "bucket": "61+",
+      "broken_promises": 2,
+      "finding": "review_collection_action",
+      "requires_human_review": true,
+      "priority_score": "93.33",
+      "evidence": [
+        "customers/customer-A"
+      ],
+      "suggested_action": "Review balance and choose a contact plan."
+    },
+    {
+      "id": "customer-B",
+      "balance": "5000",
+      "disputed_amount": "0",
+      "undisputed_balance": "5000",
+      "days_overdue": 20,
+      "bucket": "1-30",
+      "broken_promises": 0,
+      "finding": "review_collection_action",
+      "requires_human_review": true,
+      "priority_score": "37.92",
+      "evidence": [
+        "customers/customer-B"
+      ],
+      "suggested_action": "Review balance and choose a contact plan."
+    },
+    {
+      "id": "customer-G",
+      "balance": "2000",
+      "disputed_amount": "0",
+      "undisputed_balance": "2000",
+      "days_overdue": 46,
+      "bucket": "31-60",
+      "broken_promises": 1,
+      "finding": "review_collection_action",
+      "requires_human_review": true,
+      "priority_score": "34.50",
+      "evidence": [
+        "customers/customer-G"
+      ],
+      "suggested_action": "Review balance and choose a contact plan."
+    },
+    {
+      "id": "customer-D",
+      "balance": "4000",
+      "disputed_amount": "0",
+      "undisputed_balance": "4000",
+      "days_overdue": 60,
+      "bucket": "31-60",
+      "broken_promises": 0,
+      "finding": "await_active_promise",
+      "requires_human_review": false,
+      "priority_score": "0",
+      "evidence": [
+        "customers/customer-D"
+      ],
+      "suggested_action": "Monitor agreed promise; no automatic contact."
+    },
+    {
+      "id": "customer-E",
+      "balance": "2500",
+      "disputed_amount": "0",
+      "undisputed_balance": "2500",
+      "days_overdue": 0,
+      "bucket": "1-30",
+      "broken_promises": 0,
+      "finding": "not_overdue",
+      "requires_human_review": false,
+      "priority_score": "0",
+      "evidence": [
+        "customers/customer-E"
+      ],
+      "suggested_action": "Monitor only."
+    },
+    {
+      "id": "customer-C",
+      "balance": "3000",
+      "disputed_amount": "3000",
+      "undisputed_balance": "0",
+      "days_overdue": 91,
+      "bucket": "61+",
+      "broken_promises": 1,
+      "finding": "resolve_dispute",
+      "requires_human_review": true,
+      "priority_score": "0",
+      "evidence": [
+        "customers/customer-C"
+      ],
+      "suggested_action": "Investigate disputed amount before collection."
+    },
+    {
+      "id": "customer-F",
+      "balance": "0",
+      "disputed_amount": "0",
+      "undisputed_balance": "0",
+      "days_overdue": 91,
+      "bucket": "61+",
+      "broken_promises": 0,
+      "finding": "settled",
+      "requires_human_review": false,
+      "priority_score": "0",
+      "evidence": [
+        "customers/customer-F"
+      ],
+      "suggested_action": "Monitor only."
+    }
+  ],
+  "as_of": "2026-10-31",
+  "scenario_collection_amounts": {
+    "conservative": "3200.00",
+    "base": "5650.00",
+    "optimistic": "8000.00"
+  },
+  "scenario_rates": {
+    "conservative": {
+      "1-30": "0.40",
+      "31-60": "0.20",
+      "61+": "0.10"
+    },
+    "base": {
+      "1-30": "0.65",
+      "31-60": "0.40",
+      "61+": "0.20"
+    },
+    "optimistic": {
+      "1-30": "0.80",
+      "31-60": "0.60",
+      "61+": "0.35"
+    }
+  },
+  "scenario_scope": "Actionable overdue undisputed balances only; excludes active promises.",
+  "score_formula": "50*balance/max_actionable_balance + 30*min(days,90)/90 + 20*min(broken_promises,3)/3",
+  "limitations": [
+    "Heuristic ordering is not a repayment probability or credit assessment.",
+    "Scenario amounts are assumptions, not observed or predicted recoveries.",
+    "One due date per customer snapshot; not an invoice aging ledger."
+  ],
+  "ai_commentary": {
+    "status": "not_requested"
+  },
+  "execution": "local decision support; no external actions performed"
+}

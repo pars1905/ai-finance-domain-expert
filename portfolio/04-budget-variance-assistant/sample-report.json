@@ -1,0 +1,118 @@
+{
+  "project": "Budget Variance Investigation Assistant",
+  "input_sha256": "a4f187627a365e92c6fa8c588c504b8ccea2c296905bceb02f3d9789cbb1ad79",
+  "data_provenance": "Authored synthetic business examples. No client, Mercor, or personal data; no measured business impact.",
+  "currency": "TRY",
+  "items": [
+    {
+      "id": "sales",
+      "kind": "revenue",
+      "period": "2026-10",
+      "budget": "20000",
+      "actual": "22800",
+      "variance": "2800",
+      "volume_effect": "4000",
+      "price_effect": "-1200",
+      "absolute_variance_ratio": "0.14",
+      "finding": "favorable",
+      "requires_human_review": true,
+      "evidence": [
+        "lines/sales/budget_qty",
+        "lines/sales/actual_qty",
+        "lines/sales/budget_unit_price",
+        "lines/sales/actual_unit_price"
+      ],
+      "review_questions": [
+        "Verify source quantities and prices.",
+        "Investigate mix, timing or one-off effects; causes are unproven."
+      ]
+    },
+    {
+      "id": "materials",
+      "kind": "expense",
+      "period": "2026-10",
+      "budget": "8000",
+      "actual": "10200",
+      "variance": "2200",
+      "volume_effect": "1600",
+      "price_effect": "600",
+      "absolute_variance_ratio": "0.275",
+      "finding": "unfavorable",
+      "requires_human_review": true,
+      "evidence": [
+        "lines/materials/budget_qty",
+        "lines/materials/actual_qty",
+        "lines/materials/budget_unit_price",
+        "lines/materials/actual_unit_price"
+      ],
+      "review_questions": [
+        "Verify source quantities and prices.",
+        "Investigate mix, timing or one-off effects; causes are unproven."
+      ]
+    },
+    {
+      "id": "staff-cost",
+      "kind": "expense",
+      "period": "2026-10",
+      "budget": "5000",
+      "actual": "5000",
+      "variance": "0",
+      "volume_effect": "0",
+      "price_effect": "0",
+      "absolute_variance_ratio": "0",
+      "finding": "no_variance",
+      "requires_human_review": false,
+      "evidence": [
+        "lines/staff-cost/budget_qty",
+        "lines/staff-cost/actual_qty",
+        "lines/staff-cost/budget_unit_price",
+        "lines/staff-cost/actual_unit_price"
+      ],
+      "review_questions": []
+    },
+    {
+      "id": "new-service",
+      "kind": "expense",
+      "period": "2026-10",
+      "budget": "0",
+      "actual": "500",
+      "variance": "500",
+      "volume_effect": "500",
+      "price_effect": "0",
+      "absolute_variance_ratio": null,
+      "finding": "unfavorable",
+      "requires_human_review": true,
+      "evidence": [
+        "lines/new-service/budget_qty",
+        "lines/new-service/actual_qty",
+        "lines/new-service/budget_unit_price",
+        "lines/new-service/actual_unit_price"
+      ],
+      "review_questions": [
+        "Verify source quantities and prices.",
+        "Investigate mix, timing or one-off effects; causes are unproven."
+      ]
+    }
+  ],
+  "period": "2026-10",
+  "policy": {
+    "absolute_threshold": "500",
+    "relative_threshold": "0.05"
+  },
+  "operating_contribution": {
+    "budget": "7000",
+    "actual": "7100",
+    "variance": "100",
+    "volume_effect": "1900",
+    "price_effect": "-1800"
+  },
+  "decomposition": "volume=(Aq-Bq)*Bp; price=Aq*(Ap-Bp); revenue minus expense totals",
+  "limitations": [
+    "Arithmetic drivers are not causal explanations.",
+    "Whole-unit quantities; two-decimal prices; single currency and period."
+  ],
+  "ai_commentary": {
+    "status": "not_requested"
+  },
+  "execution": "local decision support; no external actions performed"
+}
