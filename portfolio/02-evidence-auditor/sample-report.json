@@ -1,0 +1,55 @@
+{
+  "scope": "quotation presence and supplied fact consistency only; not entailment",
+  "results": [
+    {
+      "id": "quote-valid",
+      "status": "pass",
+      "reason": "exact_quote_found"
+    },
+    {
+      "id": "quote-invented",
+      "status": "fail",
+      "reason": "quote_not_found"
+    },
+    {
+      "id": "quote-empty",
+      "status": "review",
+      "reason": "empty_quote"
+    },
+    {
+      "id": "unknown-source",
+      "status": "fail",
+      "reason": "unknown_source"
+    },
+    {
+      "id": "fact-valid",
+      "status": "pass",
+      "reason": "fact_matches"
+    },
+    {
+      "id": "fact-wrong",
+      "status": "fail",
+      "reason": "fact_mismatch"
+    },
+    {
+      "id": "wrong-period",
+      "status": "review",
+      "reason": "missing_or_ambiguous_fact"
+    },
+    {
+      "id": "wrong-unit",
+      "status": "review",
+      "reason": "missing_or_ambiguous_fact"
+    },
+    {
+      "id": "unsupported-inference",
+      "status": "review",
+      "reason": "unsupported_claim_kind"
+    }
+  ],
+  "counts": {
+    "pass": 2,
+    "fail": 3,
+    "review": 4
+  }
+}

@@ -1,0 +1,292 @@
+{
+  "provenance": "Authored synthetic outcomes and simulated telemetry; not measured API runs.",
+  "baseline": [
+    {
+      "id": "case-00",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.01,
+      "latency_ms": 500
+    },
+    {
+      "id": "case-01",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.01,
+      "latency_ms": 500
+    },
+    {
+      "id": "case-02",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.01,
+      "latency_ms": 500
+    },
+    {
+      "id": "case-03",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.01,
+      "latency_ms": 500
+    },
+    {
+      "id": "case-04",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.01,
+      "latency_ms": 500
+    },
+    {
+      "id": "case-05",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.01,
+      "latency_ms": 500
+    },
+    {
+      "id": "case-06",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.01,
+      "latency_ms": 500
+    },
+    {
+      "id": "case-07",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.01,
+      "latency_ms": 500
+    },
+    {
+      "id": "case-08",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.01,
+      "latency_ms": 500
+    },
+    {
+      "id": "case-09",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.01,
+      "latency_ms": 500
+    },
+    {
+      "id": "case-10",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.01,
+      "latency_ms": 500
+    },
+    {
+      "id": "case-11",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.01,
+      "latency_ms": 500
+    },
+    {
+      "id": "case-12",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.01,
+      "latency_ms": 500
+    },
+    {
+      "id": "case-13",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.01,
+      "latency_ms": 500
+    },
+    {
+      "id": "case-14",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.01,
+      "latency_ms": 500
+    },
+    {
+      "id": "case-15",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.01,
+      "latency_ms": 500
+    },
+    {
+      "id": "case-16",
+      "passed": false,
+      "critical_failure": false,
+      "cost_usd": 0.01,
+      "latency_ms": 500
+    },
+    {
+      "id": "case-17",
+      "passed": false,
+      "critical_failure": false,
+      "cost_usd": 0.01,
+      "latency_ms": 500
+    },
+    {
+      "id": "case-18",
+      "passed": false,
+      "critical_failure": false,
+      "cost_usd": 0.01,
+      "latency_ms": 500
+    },
+    {
+      "id": "case-19",
+      "passed": false,
+      "critical_failure": false,
+      "cost_usd": 0.01,
+      "latency_ms": 500
+    }
+  ],
+  "candidate": [
+    {
+      "id": "case-00",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.012,
+      "latency_ms": 700
+    },
+    {
+      "id": "case-01",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.012,
+      "latency_ms": 700
+    },
+    {
+      "id": "case-02",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.012,
+      "latency_ms": 700
+    },
+    {
+      "id": "case-03",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.012,
+      "latency_ms": 700
+    },
+    {
+      "id": "case-04",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.012,
+      "latency_ms": 700
+    },
+    {
+      "id": "case-05",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.012,
+      "latency_ms": 700
+    },
+    {
+      "id": "case-06",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.012,
+      "latency_ms": 700
+    },
+    {
+      "id": "case-07",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.012,
+      "latency_ms": 700
+    },
+    {
+      "id": "case-08",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.012,
+      "latency_ms": 700
+    },
+    {
+      "id": "case-09",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.012,
+      "latency_ms": 700
+    },
+    {
+      "id": "case-10",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.012,
+      "latency_ms": 700
+    },
+    {
+      "id": "case-11",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.012,
+      "latency_ms": 700
+    },
+    {
+      "id": "case-12",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.012,
+      "latency_ms": 700
+    },
+    {
+      "id": "case-13",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.012,
+      "latency_ms": 700
+    },
+    {
+      "id": "case-14",
+      "passed": false,
+      "critical_failure": true,
+      "cost_usd": 0.012,
+      "latency_ms": 700
+    },
+    {
+      "id": "case-15",
+      "passed": false,
+      "critical_failure": false,
+      "cost_usd": 0.012,
+      "latency_ms": 700
+    },
+    {
+      "id": "case-16",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.012,
+      "latency_ms": 700
+    },
+    {
+      "id": "case-17",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.012,
+      "latency_ms": 700
+    },
+    {
+      "id": "case-18",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.012,
+      "latency_ms": 700
+    },
+    {
+      "id": "case-19",
+      "passed": true,
+      "critical_failure": false,
+      "cost_usd": 0.012,
+      "latency_ms": 3000
+    }
+  ],
+  "policy": {
+    "max_accuracy_drop": 0,
+    "max_mean_cost_usd": 0.02,
+    "max_p95_latency_ms": 1000
+  }
+}

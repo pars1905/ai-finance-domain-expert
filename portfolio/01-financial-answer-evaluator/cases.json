@@ -1,0 +1,276 @@
+[
+  {
+    "id": "wacc-correct",
+    "task": "wacc",
+    "inputs": {
+      "equity": "600",
+      "debt": "400",
+      "cost_equity": "0.12",
+      "cost_debt": "0.06",
+      "tax_rate": "0.25"
+    },
+    "response": {
+      "value": "0.09",
+      "unit": "ratio"
+    },
+    "expected_verdict": "pass",
+    "note": "Equity 0.072 plus after-tax debt 0.018."
+  },
+  {
+    "id": "wacc-pretax-error",
+    "task": "wacc",
+    "inputs": {
+      "equity": "600",
+      "debt": "400",
+      "cost_equity": "0.12",
+      "cost_debt": "0.06",
+      "tax_rate": "0.25"
+    },
+    "response": {
+      "value": "0.096",
+      "unit": "ratio"
+    },
+    "expected_verdict": "fail",
+    "note": "Debt tax shield omitted."
+  },
+  {
+    "id": "wacc-percent-unit",
+    "task": "wacc",
+    "inputs": {
+      "equity": "600",
+      "debt": "400",
+      "cost_equity": "0.12",
+      "cost_debt": "0.06",
+      "tax_rate": "0.25"
+    },
+    "response": {
+      "value": "9",
+      "unit": "percent"
+    },
+    "expected_verdict": "fail",
+    "note": "Contract requires ratio, not percentage."
+  },
+  {
+    "id": "wacc-percent-scale",
+    "task": "wacc",
+    "inputs": {
+      "equity": "600",
+      "debt": "400",
+      "cost_equity": "0.12",
+      "cost_debt": "0.06",
+      "tax_rate": "0.25"
+    },
+    "response": {
+      "value": "9",
+      "unit": "ratio"
+    },
+    "expected_verdict": "fail",
+    "note": "Correct ratio is 0.09, not 9."
+  },
+  {
+    "id": "wacc-zero-capital",
+    "task": "wacc",
+    "inputs": {
+      "equity": 0,
+      "debt": 0,
+      "cost_equity": "0.12",
+      "cost_debt": "0.06",
+      "tax_rate": "0.25"
+    },
+    "response": {
+      "value": 0,
+      "unit": "ratio"
+    },
+    "expected_verdict": "review",
+    "note": "Undefined capital weights."
+  },
+  {
+    "id": "wacc-bad-tax",
+    "task": "wacc",
+    "inputs": {
+      "equity": "600",
+      "debt": "400",
+      "cost_equity": "0.12",
+      "cost_debt": "0.06",
+      "tax_rate": "1.5"
+    },
+    "response": {
+      "value": 0,
+      "unit": "ratio"
+    },
+    "expected_verdict": "review",
+    "note": "Outside declared tax assumption range."
+  },
+  {
+    "id": "wacc-no-debt",
+    "task": "wacc",
+    "inputs": {
+      "equity": "600",
+      "debt": 0,
+      "cost_equity": "0.12",
+      "cost_debt": "0.06",
+      "tax_rate": "0.25"
+    },
+    "response": {
+      "value": "0.12",
+      "unit": "ratio"
+    },
+    "expected_verdict": "pass",
+    "note": "No debt means cost of equity."
+  },
+  {
+    "id": "terminal-correct",
+    "task": "dcf_terminal",
+    "inputs": {
+      "fcf_current": "100",
+      "discount_rate": "0.10",
+      "growth_rate": "0.02"
+    },
+    "response": {
+      "value": "1275",
+      "unit": "currency"
+    },
+    "expected_verdict": "pass",
+    "note": "100 * 1.02 / 0.08."
+  },
+  {
+    "id": "terminal-missing-growth",
+    "task": "dcf_terminal",
+    "inputs": {
+      "fcf_current": "100",
+      "discount_rate": "0.10",
+      "growth_rate": "0.02"
+    },
+    "response": {
+      "value": "1250",
+      "unit": "currency"
+    },
+    "expected_verdict": "fail",
+    "note": "Current FCF used instead of next-year FCF."
+  },
+  {
+    "id": "terminal-invalid-spread",
+    "task": "dcf_terminal",
+    "inputs": {
+      "fcf_current": "100",
+      "discount_rate": "0.10",
+      "growth_rate": "0.10"
+    },
+    "response": {
+      "value": 0,
+      "unit": "currency"
+    },
+    "expected_verdict": "review",
+    "note": "r must exceed g."
+  },
+  {
+    "id": "terminal-negative-growth",
+    "task": "dcf_terminal",
+    "inputs": {
+      "fcf_current": "100",
+      "discount_rate": "0.10",
+      "growth_rate": "-0.02"
+    },
+    "response": {
+      "value": "816.6667",
+      "unit": "currency"
+    },
+    "expected_verdict": "pass",
+    "note": "Negative growth is allowed above -1."
+  },
+  {
+    "id": "margin-correct",
+    "task": "gross_margin",
+    "inputs": {
+      "revenue": "1000",
+      "cogs": "650"
+    },
+    "response": {
+      "value": "0.35",
+      "unit": "ratio"
+    },
+    "expected_verdict": "pass",
+    "note": "350 / 1000."
+  },
+  {
+    "id": "margin-markup-error",
+    "task": "gross_margin",
+    "inputs": {
+      "revenue": "1000",
+      "cogs": "650"
+    },
+    "response": {
+      "value": "0.53846",
+      "unit": "ratio"
+    },
+    "expected_verdict": "fail",
+    "note": "Markup divided by COGS, not revenue."
+  },
+  {
+    "id": "margin-loss",
+    "task": "gross_margin",
+    "inputs": {
+      "revenue": 100,
+      "cogs": 120
+    },
+    "response": {
+      "value": "-0.2",
+      "unit": "ratio"
+    },
+    "expected_verdict": "pass",
+    "note": "Negative margins are valid."
+  },
+  {
+    "id": "margin-zero-revenue",
+    "task": "gross_margin",
+    "inputs": {
+      "revenue": 0,
+      "cogs": 1
+    },
+    "response": {
+      "value": 0,
+      "unit": "ratio"
+    },
+    "expected_verdict": "review",
+    "note": "No denominator."
+  },
+  {
+    "id": "margin-nan",
+    "task": "gross_margin",
+    "inputs": {
+      "revenue": "1000",
+      "cogs": "650"
+    },
+    "response": {
+      "value": "NaN",
+      "unit": "ratio"
+    },
+    "expected_verdict": "fail",
+    "note": "Non-finite model answer."
+  },
+  {
+    "id": "margin-missing-output",
+    "task": "gross_margin",
+    "inputs": {
+      "revenue": "1000",
+      "cogs": "650"
+    },
+    "response": {
+      "value": null,
+      "unit": "ratio"
+    },
+    "expected_verdict": "fail",
+    "note": "Missing numeric value."
+  },
+  {
+    "id": "unknown-task",
+    "task": "free_text",
+    "inputs": {},
+    "response": {
+      "value": 1,
+      "unit": "ratio"
+    },
+    "expected_verdict": "review",
+    "note": "Unsupported free-text reasoning is not auto-scored."
+  }
+]

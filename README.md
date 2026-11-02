@@ -62,3 +62,18 @@ This project significantly deepened my understanding of:
 - Where AI reliability breaks down in professional contexts
 - How to design evaluation frameworks for AI outputs
 - The intersection of financial expertise and AI development
+
+
+---
+
+## Runnable Finance AI Evaluation Portfolio
+
+Three AI-assisted Python prototypes with synthetic fixtures, 24 unit tests, and reproducible reports:
+
+1. [Financial Answer Evaluator](portfolio/01-financial-answer-evaluator/) — WACC, terminal value and margin checks.
+2. [Evidence Auditor](portfolio/02-evidence-auditor/) — exact quotations and period/unit-aware fact validation.
+3. [Evaluation Release Gate](portfolio/03-evaluation-release-gate/) — paired outcomes and quality/cost/latency gates.
+
+[Run all checks](portfolio/) · [12-project roadmap](portfolio/ROADMAP.md) · [Turkish learning guide](portfolio/LEARNING_GUIDE_TR.md)
+
+These are local portfolio prototypes, not production systems or real model benchmarks. No confidential client data is included. Roadmap projects 04–12 are planned, not implemented.

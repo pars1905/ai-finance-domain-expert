@@ -1,0 +1,91 @@
+{
+  "provenance": "Entirely fictional documents and authored claims. No Mercor or client data.",
+  "sources": [
+    {
+      "id": "report-2025",
+      "text": "ExampleCo reported revenue of USD 120 million in FY2025. Gross margin declined to 30%. Figures are unaudited.",
+      "facts": [
+        {
+          "metric": "revenue",
+          "period": "FY2025",
+          "unit": "USD million",
+          "value": "120"
+        },
+        {
+          "metric": "gross_margin",
+          "period": "FY2025",
+          "unit": "ratio",
+          "value": "0.30"
+        }
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "quote-valid",
+      "source_id": "report-2025",
+      "kind": "quote",
+      "quote": "Figures are unaudited."
+    },
+    {
+      "id": "quote-invented",
+      "source_id": "report-2025",
+      "kind": "quote",
+      "quote": "Figures are audited."
+    },
+    {
+      "id": "quote-empty",
+      "source_id": "report-2025",
+      "kind": "quote",
+      "quote": ""
+    },
+    {
+      "id": "unknown-source",
+      "source_id": "missing",
+      "kind": "quote",
+      "quote": "Revenue grew."
+    },
+    {
+      "id": "fact-valid",
+      "source_id": "report-2025",
+      "kind": "fact",
+      "metric": "revenue",
+      "period": "FY2025",
+      "unit": "USD million",
+      "value": "120.0"
+    },
+    {
+      "id": "fact-wrong",
+      "source_id": "report-2025",
+      "kind": "fact",
+      "metric": "revenue",
+      "period": "FY2025",
+      "unit": "USD million",
+      "value": "210"
+    },
+    {
+      "id": "wrong-period",
+      "source_id": "report-2025",
+      "kind": "fact",
+      "metric": "revenue",
+      "period": "FY2024",
+      "unit": "USD million",
+      "value": "120"
+    },
+    {
+      "id": "wrong-unit",
+      "source_id": "report-2025",
+      "kind": "fact",
+      "metric": "revenue",
+      "period": "FY2025",
+      "unit": "EUR million",
+      "value": "120"
+    },
+    {
+      "id": "unsupported-inference",
+      "source_id": "report-2025",
+      "kind": "inference",
+      "text": "The company is financially healthy."
+    }
+  ]
+}

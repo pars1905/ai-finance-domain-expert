@@ -1,0 +1,35 @@
+{
+  "scope": "paired supplied outcomes; synthetic demo is not model performance",
+  "cases": 20,
+  "baseline_accuracy": 0.8,
+  "candidate_accuracy": 0.9,
+  "accuracy_delta": 0.09999999999999998,
+  "improved_case_ids": [
+    "case-16",
+    "case-17",
+    "case-18",
+    "case-19"
+  ],
+  "regressed_case_ids": [
+    "case-14",
+    "case-15"
+  ],
+  "critical_failure_case_ids": [
+    "case-14"
+  ],
+  "exact_mcnemar_p_value": 0.6875,
+  "candidate_mean_cost_usd": 0.012,
+  "candidate_p95_latency_ms": 700,
+  "policy": {
+    "max_accuracy_drop": 0,
+    "max_mean_cost_usd": 0.02,
+    "max_p95_latency_ms": 1000
+  },
+  "gates": {
+    "quality": true,
+    "cost": true,
+    "latency": true,
+    "critical_failures": false
+  },
+  "decision": "block"
+}

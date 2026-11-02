@@ -1,0 +1,150 @@
+{
+  "scope": "synthetic structured-answer checks; not model accuracy",
+  "cases": 18,
+  "results": [
+    {
+      "id": "wacc-correct",
+      "verdict": "pass",
+      "reason": "within_tolerance",
+      "expected": "0.0900",
+      "actual": "0.09",
+      "unit": "ratio",
+      "absolute_tolerance": "0.0001"
+    },
+    {
+      "id": "wacc-pretax-error",
+      "verdict": "fail",
+      "reason": "numeric_mismatch",
+      "expected": "0.0900",
+      "actual": "0.096",
+      "unit": "ratio",
+      "absolute_tolerance": "0.0001"
+    },
+    {
+      "id": "wacc-percent-unit",
+      "verdict": "fail",
+      "reason": "unit_mismatch"
+    },
+    {
+      "id": "wacc-percent-scale",
+      "verdict": "fail",
+      "reason": "numeric_mismatch",
+      "expected": "0.0900",
+      "actual": "9",
+      "unit": "ratio",
+      "absolute_tolerance": "0.0001"
+    },
+    {
+      "id": "wacc-zero-capital",
+      "verdict": "review",
+      "reason": "invalid_input",
+      "detail": "Invalid WACC assumptions"
+    },
+    {
+      "id": "wacc-bad-tax",
+      "verdict": "review",
+      "reason": "invalid_input",
+      "detail": "Invalid WACC assumptions"
+    },
+    {
+      "id": "wacc-no-debt",
+      "verdict": "pass",
+      "reason": "within_tolerance",
+      "expected": "0.1200",
+      "actual": "0.12",
+      "unit": "ratio",
+      "absolute_tolerance": "0.0001"
+    },
+    {
+      "id": "terminal-correct",
+      "verdict": "pass",
+      "reason": "within_tolerance",
+      "expected": "1275",
+      "actual": "1275",
+      "unit": "currency",
+      "absolute_tolerance": "0.01"
+    },
+    {
+      "id": "terminal-missing-growth",
+      "verdict": "fail",
+      "reason": "numeric_mismatch",
+      "expected": "1275",
+      "actual": "1250",
+      "unit": "currency",
+      "absolute_tolerance": "0.01"
+    },
+    {
+      "id": "terminal-invalid-spread",
+      "verdict": "review",
+      "reason": "invalid_input",
+      "detail": "Terminal value requires r > g and rates > -1"
+    },
+    {
+      "id": "terminal-negative-growth",
+      "verdict": "pass",
+      "reason": "within_tolerance",
+      "expected": "816.6666666666666666666666667",
+      "actual": "816.6667",
+      "unit": "currency",
+      "absolute_tolerance": "0.01"
+    },
+    {
+      "id": "margin-correct",
+      "verdict": "pass",
+      "reason": "within_tolerance",
+      "expected": "0.35",
+      "actual": "0.35",
+      "unit": "ratio",
+      "absolute_tolerance": "0.0001"
+    },
+    {
+      "id": "margin-markup-error",
+      "verdict": "fail",
+      "reason": "numeric_mismatch",
+      "expected": "0.35",
+      "actual": "0.53846",
+      "unit": "ratio",
+      "absolute_tolerance": "0.0001"
+    },
+    {
+      "id": "margin-loss",
+      "verdict": "pass",
+      "reason": "within_tolerance",
+      "expected": "-0.2",
+      "actual": "-0.2",
+      "unit": "ratio",
+      "absolute_tolerance": "0.0001"
+    },
+    {
+      "id": "margin-zero-revenue",
+      "verdict": "review",
+      "reason": "invalid_input",
+      "detail": "Revenue must be positive and COGS non-negative"
+    },
+    {
+      "id": "margin-nan",
+      "verdict": "fail",
+      "reason": "invalid_response"
+    },
+    {
+      "id": "margin-missing-output",
+      "verdict": "fail",
+      "reason": "invalid_response"
+    },
+    {
+      "id": "unknown-task",
+      "verdict": "review",
+      "reason": "invalid_input",
+      "detail": "Unsupported task"
+    }
+  ],
+  "verdict_counts": {
+    "pass": 6,
+    "fail": 7,
+    "review": 5
+  },
+  "checker_agreement": {
+    "matches": 18,
+    "labeled_cases": 18
+  }
+}
