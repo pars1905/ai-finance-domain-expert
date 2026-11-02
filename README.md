@@ -66,9 +66,9 @@ This project significantly deepened my understanding of:
 
 ---
 
-## Runnable Finance AI Evaluation Portfolio
+## Runnable Finance AI Portfolio
 
-Six AI-assisted Python prototypes with synthetic fixtures, 63 unit tests, and reproducible reports:
+Seven AI-assisted Python prototypes with synthetic fixtures, 88 unit tests, and reproducible reports:
 
 1. [Financial Answer Evaluator](portfolio/01-financial-answer-evaluator/) — WACC, terminal value and margin checks.
 2. [Evidence Auditor](portfolio/02-evidence-auditor/) — exact quotations and period/unit-aware fact validation.
@@ -76,8 +76,9 @@ Six AI-assisted Python prototypes with synthetic fixtures, 63 unit tests, and re
 4. [Budget Variance Investigation Assistant](portfolio/04-budget-variance-assistant/) — price/volume bridges and analyst review.
 5. [Cash Collection Prioritization Workbench](portfolio/05-cash-collection-workbench/) — disputed/promise-aware queues and explicit cash scenarios.
 6. [Supplier Proposal Comparison Assistant](portfolio/06-supplier-proposal-assistant/) — comparable contract cost, eligibility and weight sensitivity.
+7. [Cited Financial Document Assistant](portfolio/07-cited-financial-assistant/) — filtered retrieval, exact source spans and optional validated cited drafts.
 
 [Run all checks](portfolio/) · [12-project roadmap](portfolio/ROADMAP.md) · [Turkish learning guide](portfolio/LEARNING_GUIDE_TR.md)
 
-These are local portfolio prototypes, not production systems or real model benchmarks. No confidential client data is included. Projects 04–06 include an optional model commentary adapter tested with mocked responses; no live model call has been verified. Roadmap projects 07–12 remain planned.
+These are local portfolio prototypes, not production systems or real model benchmarks. No confidential client data is included. Projects 04–07 include optional model adapters tested with mocked responses; no live model call has been verified. Project 07 has a separate authored retrieval evaluation, not a real-model benchmark. Roadmap projects 08–12 remain planned.
 

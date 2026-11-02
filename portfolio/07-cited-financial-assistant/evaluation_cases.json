@@ -1,0 +1,166 @@
+{
+  "version": "authored-evaluation-v1",
+  "provenance": "Separate authored development/holdout partitions. Not independently reviewed, not real model outputs. Retrieval policy fixed before first evaluation; no claim of statistical generalization.",
+  "cases": [
+    {
+      "id": "dev-revenue",
+      "split": "development",
+      "question": "What was ExampleCo revenue in FY2025?",
+      "entity": "ExampleCo",
+      "period": "FY2025",
+      "expected_evidence": true,
+      "expected_source": "exampleco-2025-income",
+      "expected_quote_contains": "USD 120 million"
+    },
+    {
+      "id": "dev-margin",
+      "split": "development",
+      "question": "What was gross margin?",
+      "entity": "ExampleCo",
+      "period": "FY2025",
+      "expected_evidence": true,
+      "expected_source": "exampleco-2025-income",
+      "expected_quote_contains": "gross margin was 30%"
+    },
+    {
+      "id": "dev-cash",
+      "split": "development",
+      "question": "What were operating cash flows?",
+      "entity": "ExampleCo",
+      "period": "FY2025",
+      "expected_evidence": true,
+      "expected_source": "exampleco-2025-cash",
+      "expected_quote_contains": "USD 18 million"
+    },
+    {
+      "id": "dev-other-company",
+      "split": "development",
+      "question": "What was revenue?",
+      "entity": "OtherCo",
+      "period": "FY2025",
+      "expected_evidence": true,
+      "expected_source": "otherco-2025-income",
+      "expected_quote_contains": "USD 250 million"
+    },
+    {
+      "id": "dev-prior-year",
+      "split": "development",
+      "question": "What was revenue?",
+      "entity": "ExampleCo",
+      "period": "FY2024",
+      "expected_evidence": true,
+      "expected_source": "exampleco-2024-income",
+      "expected_quote_contains": "USD 100 million"
+    },
+    {
+      "id": "dev-ceo",
+      "split": "development",
+      "question": "Who is the chief executive officer?",
+      "entity": "ExampleCo",
+      "period": "FY2025",
+      "expected_evidence": false,
+      "expected_source": null,
+      "expected_quote_contains": null
+    },
+    {
+      "id": "dev-missing-entity",
+      "split": "development",
+      "question": "What was revenue?",
+      "entity": "UnknownCo",
+      "period": "FY2025",
+      "expected_evidence": false,
+      "expected_source": null,
+      "expected_quote_contains": null
+    },
+    {
+      "id": "dev-period-conflict",
+      "split": "development",
+      "question": "What was revenue in FY2024?",
+      "entity": "ExampleCo",
+      "period": "FY2025",
+      "expected_evidence": false,
+      "expected_source": null,
+      "expected_quote_contains": null
+    },
+    {
+      "id": "holdout-debt",
+      "split": "holdout",
+      "question": "Tell me about closing debt.",
+      "entity": "ExampleCo",
+      "period": "FY2025",
+      "expected_evidence": true,
+      "expected_source": "exampleco-2025-cash",
+      "expected_quote_contains": "USD 45 million"
+    },
+    {
+      "id": "holdout-capex",
+      "split": "holdout",
+      "question": "What was capital expenditure?",
+      "entity": "ExampleCo",
+      "period": "FY2025",
+      "expected_evidence": true,
+      "expected_source": "exampleco-2025-cash",
+      "expected_quote_contains": "USD 8 million"
+    },
+    {
+      "id": "holdout-expenses",
+      "split": "holdout",
+      "question": "What were operating expenses?",
+      "entity": "ExampleCo",
+      "period": "FY2025",
+      "expected_evidence": true,
+      "expected_source": "exampleco-2025-income",
+      "expected_quote_contains": "USD 12 million"
+    },
+    {
+      "id": "holdout-turkish",
+      "split": "holdout",
+      "question": "ExampleCo FY2025 brüt marjı nedir?",
+      "entity": "ExampleCo",
+      "period": "FY2025",
+      "expected_evidence": true,
+      "expected_source": "exampleco-2025-income",
+      "expected_quote_contains": "gross margin was 30%"
+    },
+    {
+      "id": "holdout-no-dividend",
+      "split": "holdout",
+      "question": "What dividends were paid?",
+      "entity": "ExampleCo",
+      "period": "FY2025",
+      "expected_evidence": false,
+      "expected_source": null,
+      "expected_quote_contains": null
+    },
+    {
+      "id": "holdout-forecast",
+      "split": "holdout",
+      "question": "What is the FY2027 revenue forecast?",
+      "entity": "ExampleCo",
+      "period": "FY2025",
+      "expected_evidence": false,
+      "expected_source": null,
+      "expected_quote_contains": null
+    },
+    {
+      "id": "holdout-missing-period",
+      "split": "holdout",
+      "question": "What was gross margin?",
+      "entity": "ExampleCo",
+      "period": "FY2023",
+      "expected_evidence": false,
+      "expected_source": null,
+      "expected_quote_contains": null
+    },
+    {
+      "id": "holdout-product-split",
+      "split": "holdout",
+      "question": "What was revenue by product segment?",
+      "entity": "ExampleCo",
+      "period": "FY2025",
+      "expected_evidence": false,
+      "expected_source": null,
+      "expected_quote_contains": null
+    }
+  ]
+}

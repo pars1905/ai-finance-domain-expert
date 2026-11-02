@@ -1,6 +1,6 @@
 # Twelve-project roadmap
 
-Projects 01–06 are implemented as local prototypes. Items 07–12 are plans, not completed work
+Projects 01–07 are implemented as local prototypes. Items 08–12 are plans, not completed work
 and must not be listed as completed CV projects. Build and understand them in order.
 
 | # | Role track | Project | Acceptance evidence |
@@ -11,7 +11,7 @@ and must not be listed as completed CV projects. Build and understand them in or
 | 04 | AI Business Analyst / Finance Automation Consultant | [Budget Variance Investigation Assistant](04-budget-variance-assistant/) | Budget-versus-actual reconciliation, price/volume variance decomposition, evidence-linked explanations, analyst review and synthetic acceptance tests; separate calculated drivers from unverified causal hypotheses — implemented as offline prototype; optional AI adapter mocked, not live verified |
 | 05 | AI Business Analyst / Finance Automation Consultant | [Cash Collection Prioritization Workbench](05-cash-collection-workbench/) | Synthetic customer balance snapshots and collection histories, transparent overdue/exposure ranking, what-if cash scenarios and human-reviewed action queue; no customer messages or fabricated recovery results — implemented as offline prototype; optional AI adapter mocked, not live verified |
 | 06 | AI Business Analyst / Finance Automation Consultant | [Supplier Proposal Comparison Assistant](06-supplier-proposal-assistant/) | Fictional supplier bids, required-criteria checks, total-cost normalization, evidence-linked tradeoffs and weight sensitivity; flag missing data and keep supplier selection with the reviewer — implemented as offline prototype; optional AI adapter mocked, not live verified |
-| 07 | Applied AI Engineer — Finance | Cited Financial Document Assistant | Real model call, retrieval, exact source spans, structured output validation, unseen evaluation set, secrets via environment |
+| 07 | Applied AI Engineer — Finance | [Cited Financial Document Assistant](07-cited-financial-assistant/) | Filtered lexical retrieval, exact source spans, structured draft/citation validation, separate authored development/holdout cases, secrets via environment — prototype implemented; real API request path mocked end-to-end, live model validation still pending |
 | 08 | Applied AI Engineer — Finance | Finance Review API | Authenticated API, database, idempotency, approval state transitions, integration tests; no real ERP writes in demo |
 | 09 | Applied AI Engineer — Finance | Observable Evaluation Service | Deployment instructions, real latency/token logging, bounded retries, rate limits and budget controls; live verification separately recorded |
 | 10 | ML Engineer / Research Engineer preparation | Invoice Exception Classifier | Logistic-regression baseline, grouped train/validation/test split, threshold choice on validation only, class-imbalance metrics and model card |

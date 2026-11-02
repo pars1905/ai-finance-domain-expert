@@ -1,8 +1,8 @@
 # Finance AI portfolio — evaluation first
 
-Six runnable projects, followed by six planned engineering/ML projects.
+Seven runnable projects, followed by five planned engineering/ML projects.
 Python 3.10+; standard library only. Default demos are offline and need no keys.
-Projects 04–06 optionally request model commentary with `--ai`; that mode needs
+Projects 04–07 optionally request model output with `--ai`; that mode needs
 your API credentials and may incur charges. No real-key call has been verified.
 These are local portfolio prototypes built with AI assistance, not deployed client work.
 All examples are authored synthetic data; none are actual Mercor prompts, responses,
@@ -16,6 +16,7 @@ client documents, or measured model outputs.
 | 04 | [Budget Variance Investigation Assistant](04-budget-variance-assistant/) | Reconciled price/volume bridges and materiality review | Runnable |
 | 05 | [Cash Collection Prioritization Workbench](05-cash-collection-workbench/) | Dispute/promise-aware queue and explicit cash scenarios | Runnable |
 | 06 | [Supplier Proposal Comparison Assistant](06-supplier-proposal-assistant/) | Total contract cost, eligibility and weight sensitivity | Runnable |
+| 07 | [Cited Financial Document Assistant](07-cited-financial-assistant/) | Company/period-filtered BM25, exact spans, structured cited drafts | Runnable; live model pending |
 
 From the repository root:
 
@@ -23,8 +24,9 @@ From the repository root:
 python portfolio/run_checks.py
 ```
 
-This runs 63 unit tests and regenerates six `sample-report.json` files plus
-Markdown reports for projects 04–06. Each project accepts a custom JSON input.
+This runs 88 unit tests and regenerates seven `sample-report.json` files plus
+Markdown reports for projects 04–07 and project 07's authored retrieval evaluation.
+Each project accepts a custom JSON input.
 Run each directory's tests with `python -m unittest discover -v` inside it.
 Projects 04–06 use shared parent helpers; retain the portfolio folder structure.
 
@@ -44,6 +46,9 @@ Projects 04–06 use shared parent helpers; retain the portfolio folder structur
    explicitly an assumption-based amount, not predicted or recovered cash.
 6. Project 06 compares five fictional proposals, ranks only two eligible TRY
    bids, and shows the leading bid changes with delivery/payment weights.
+7. Project 07 retrieves source excerpts by company/period. Its separately
+   authored holdout has four supported hits and four abstentions in eight cases;
+   this small retrieval check does not measure generated-answer accuracy.
 
 See [ROADMAP.md](ROADMAP.md) for all 12 planned projects and acceptance criteria.
 See [LEARNING_GUIDE_TR.md](LEARNING_GUIDE_TR.md) before putting these on a CV.
@@ -54,8 +59,8 @@ Choose a permitted model and generate real outputs on a separately authored,
 versioned test set. Record model identifier, prompt, parameters, timestamp,
 tokens and observed latency. Have an independent domain reviewer adjudicate
 labels. Report failures and confidence intervals, not only a single score.
-Default prototypes do not call a model; projects 04–06 contain an optional
-commentary adapter validated only through mocked HTTP tests. No model training,
+Default prototypes do not call a model; projects 04–07 contain optional
+model adapters validated only through mocked HTTP tests. No model training,
 fine-tuning or production deployment has been performed.
 
 See [BUSINESS_TOOLS.md](BUSINESS_TOOLS.md) for bounded optional AI calls and

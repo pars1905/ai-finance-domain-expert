@@ -1,6 +1,6 @@
 # Projeleri anlayarak kullanma rehberi
 
-Bu altı proje AI yardımıyla hazırlanmış portföy prototipleridir. Mesleki deneyim,
+Bu yedi proje AI yardımıyla hazırlanmış portföy prototipleridir. Mesleki deneyim,
 üretim sistemi veya gerçek müşteri başarısı olarak sunulmamalıdır. CV'de
 kullanırken kendi katkını, test ettiğin kapsamı ve açıklayabildiğin kodu anlat.
 
@@ -62,4 +62,32 @@ A tedarikçisinin toplam 10.900 TL maliyetini bileşenlerinden hesapla. Teslimat
 ## Yerel inceleme kaydı ve AI
 
 Bir rapor üretip `review_decision.py` ile inceleme kaydet; aynı kaydı tekrar gönderince yeni satır oluşmadığını doğrula. Bu kayıt gerçek kimlik doğrulama veya değiştirilemez denetim sistemi değildir. `--ai` ancak senin ortamında anahtar/model ayarlandığında dış servise istek yapar ve ücret doğurabilir. AI açıklaması denetlenmemiştir; hesaplar ve kararlarla karıştırılmaz.
+
+## 07 — Kaynak gösteren finansal belge asistanı
+
+Depo kökünde şu komutla başla:
+
+```bash
+python portfolio/07-cited-financial-assistant/assistant.py --question "ExampleCo FY2025 geliri nedir?"
+```
+
+Anahtarsız mod, hayali finansal belgeden birebir alıntı döndürür; model tarafından
+yazılmış yanıt değildir. Kaynaktaki 120 milyon USD tutarını `corpus.json` içinde
+bul. `start` ve `end` değerlerinin metinde doğru aralığı gösterdiğini kontrol et.
+Şirketi OtherCo veya dönemi FY2024 yaparak farklı kaynağın geldiğini gözlemle.
+
+`--question "What dividends were paid?"` ile kanıt olmadığında ne olduğunu gör.
+Türkçe terimler için sınırlı bir eşleme var; genel anlamda bütün Türkçe soruları
+anlayan bir arama modeli yok. Bilinmeyen bir ifadeyle aramanın neden kaçırdığını açıkla.
+
+İsteğe bağlı `--ai` modunda gerçek API isteği gönderilebilir. Model, metin ve
+alıntıları belirli JSON alanlarında döndürür; kod alıntının gerçekten kaynakta
+bulunmasını ve sınırlı sayı/para birimi eşleşmesini kontrol eder. Gerçek anahtarla
+bu yol henüz doğrulanmadı. Doğru bir alıntı, yorumun doğru olduğu anlamına gelmez:
+"gelir 120 milyon USD'ye çöktü" ifadesindeki çöküşü kaynak desteklemeyebilir.
+
+`evaluate.py` geliştirme ve ayrı değerlendirme sorularını raporlar. Bunlar küçük,
+sentetik ve bağımsız uzman tarafından doğrulanmamış örneklerdir. Sonucu gerçek
+model başarı oranı olarak CV'ye yazma. Bir sonraki aşama, izinli modelle canlı
+deneme ve bağımsız hazırlanmış yeni sorularla kaynak/yanıt incelemesidir.
 

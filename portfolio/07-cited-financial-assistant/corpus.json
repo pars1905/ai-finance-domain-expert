@@ -1,0 +1,38 @@
+{
+  "version": "synthetic-v1",
+  "provenance": "Entirely authored fictional financial excerpts; not actual companies, audited filings, or client data.",
+  "documents": [
+    {
+      "id": "exampleco-2025-income",
+      "entity": "ExampleCo",
+      "period": "FY2025",
+      "title": "ExampleCo FY2025 \u2014 fictional income statement",
+      "provenance": "Entirely authored fictional financial excerpts; not actual companies, audited filings, or client data.",
+      "text": "ExampleCo FY2025 revenue was USD 120 million. Revenue figures are unaudited.\n\nExampleCo FY2025 gross profit was USD 36 million and gross margin was 30%. The margin is reported, not calculated by this assistant.\n\nExampleCo FY2025 operating expenses were USD 12 million. These figures exclude interest and taxes."
+    },
+    {
+      "id": "exampleco-2025-cash",
+      "entity": "ExampleCo",
+      "period": "FY2025",
+      "title": "ExampleCo FY2025 \u2014 fictional cash and debt notes",
+      "provenance": "Entirely authored fictional financial excerpts; not actual companies, audited filings, or client data.",
+      "text": "ExampleCo FY2025 operating cash flows were USD 18 million. Cash flows are reported on an annual basis.\n\nExampleCo FY2025 closing debt was USD 45 million. Debt maturity dates were not disclosed in this excerpt.\n\nExampleCo FY2025 capital expenditure was USD 8 million. These notes do not contain forecasts."
+    },
+    {
+      "id": "exampleco-2024-income",
+      "entity": "ExampleCo",
+      "period": "FY2024",
+      "title": "ExampleCo FY2024 \u2014 fictional comparative figures",
+      "provenance": "Entirely authored fictional financial excerpts; not actual companies, audited filings, or client data.",
+      "text": "ExampleCo FY2024 revenue was USD 100 million. This is the prior financial year.\n\nExampleCo FY2024 gross margin was 28%. Operating cash flows were USD 12 million."
+    },
+    {
+      "id": "otherco-2025-income",
+      "entity": "OtherCo",
+      "period": "FY2025",
+      "title": "OtherCo FY2025 \u2014 fictional distractor company",
+      "provenance": "Entirely authored fictional financial excerpts; not actual companies, audited filings, or client data.",
+      "text": "OtherCo FY2025 revenue was USD 250 million. These figures belong to OtherCo, not ExampleCo.\n\nOtherCo FY2025 gross margin was 40%. Closing debt was USD 60 million."
+    }
+  ]
+}

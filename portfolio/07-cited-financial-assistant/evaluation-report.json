@@ -1,0 +1,195 @@
+{
+  "scope": "authored synthetic retrieval tests; not generated-answer or real model accuracy",
+  "corpus_sha256": "c11ff481d081c77a8825feb007018b8b0c9ff80027446f8f6e221011765b949b",
+  "evaluation_sha256": "5de9bc1fa49ba8841a452bb2e61c74b704b7b6f9e22bb8f1ce6d445927405ec1",
+  "policy_version": "bm25-coverage-v1",
+  "partitions": {
+    "development": {
+      "cases": 8,
+      "supported_cases": 5,
+      "supported_hits_at_3": 5,
+      "unsupported_cases": 3,
+      "correct_abstentions": 3,
+      "all_returned_spans_valid": true,
+      "results": [
+        {
+          "id": "dev-revenue",
+          "expected_evidence": true,
+          "returned_evidence": true,
+          "supported_hit_at_3": true,
+          "correct_abstention": null,
+          "exact_spans_valid": true,
+          "retrieved_span_ids": [
+            "exampleco-2025-income:0-76"
+          ]
+        },
+        {
+          "id": "dev-margin",
+          "expected_evidence": true,
+          "returned_evidence": true,
+          "supported_hit_at_3": true,
+          "correct_abstention": null,
+          "exact_spans_valid": true,
+          "retrieved_span_ids": [
+            "exampleco-2025-income:78-210"
+          ]
+        },
+        {
+          "id": "dev-cash",
+          "expected_evidence": true,
+          "returned_evidence": true,
+          "supported_hit_at_3": true,
+          "correct_abstention": null,
+          "exact_spans_valid": true,
+          "retrieved_span_ids": [
+            "exampleco-2025-cash:0-102"
+          ]
+        },
+        {
+          "id": "dev-other-company",
+          "expected_evidence": true,
+          "returned_evidence": true,
+          "supported_hit_at_3": true,
+          "correct_abstention": null,
+          "exact_spans_valid": true,
+          "retrieved_span_ids": [
+            "otherco-2025-income:0-91"
+          ]
+        },
+        {
+          "id": "dev-prior-year",
+          "expected_evidence": true,
+          "returned_evidence": true,
+          "supported_hit_at_3": true,
+          "correct_abstention": null,
+          "exact_spans_valid": true,
+          "retrieved_span_ids": [
+            "exampleco-2024-income:0-79"
+          ]
+        },
+        {
+          "id": "dev-ceo",
+          "expected_evidence": false,
+          "returned_evidence": false,
+          "supported_hit_at_3": null,
+          "correct_abstention": true,
+          "exact_spans_valid": true,
+          "retrieved_span_ids": []
+        },
+        {
+          "id": "dev-missing-entity",
+          "expected_evidence": false,
+          "returned_evidence": false,
+          "supported_hit_at_3": null,
+          "correct_abstention": true,
+          "exact_spans_valid": true,
+          "retrieved_span_ids": []
+        },
+        {
+          "id": "dev-period-conflict",
+          "expected_evidence": false,
+          "returned_evidence": false,
+          "supported_hit_at_3": null,
+          "correct_abstention": true,
+          "exact_spans_valid": true,
+          "retrieved_span_ids": []
+        }
+      ]
+    },
+    "holdout": {
+      "cases": 8,
+      "supported_cases": 4,
+      "supported_hits_at_3": 4,
+      "unsupported_cases": 4,
+      "correct_abstentions": 4,
+      "all_returned_spans_valid": true,
+      "results": [
+        {
+          "id": "holdout-debt",
+          "expected_evidence": true,
+          "returned_evidence": true,
+          "supported_hit_at_3": true,
+          "correct_abstention": null,
+          "exact_spans_valid": true,
+          "retrieved_span_ids": [
+            "exampleco-2025-cash:104-209"
+          ]
+        },
+        {
+          "id": "holdout-capex",
+          "expected_evidence": true,
+          "returned_evidence": true,
+          "supported_hit_at_3": true,
+          "correct_abstention": null,
+          "exact_spans_valid": true,
+          "retrieved_span_ids": [
+            "exampleco-2025-cash:211-304"
+          ]
+        },
+        {
+          "id": "holdout-expenses",
+          "expected_evidence": true,
+          "returned_evidence": true,
+          "supported_hit_at_3": true,
+          "correct_abstention": null,
+          "exact_spans_valid": true,
+          "retrieved_span_ids": [
+            "exampleco-2025-income:212-310"
+          ]
+        },
+        {
+          "id": "holdout-turkish",
+          "expected_evidence": true,
+          "returned_evidence": true,
+          "supported_hit_at_3": true,
+          "correct_abstention": null,
+          "exact_spans_valid": true,
+          "retrieved_span_ids": [
+            "exampleco-2025-income:78-210"
+          ]
+        },
+        {
+          "id": "holdout-no-dividend",
+          "expected_evidence": false,
+          "returned_evidence": false,
+          "supported_hit_at_3": null,
+          "correct_abstention": true,
+          "exact_spans_valid": true,
+          "retrieved_span_ids": []
+        },
+        {
+          "id": "holdout-forecast",
+          "expected_evidence": false,
+          "returned_evidence": false,
+          "supported_hit_at_3": null,
+          "correct_abstention": true,
+          "exact_spans_valid": true,
+          "retrieved_span_ids": []
+        },
+        {
+          "id": "holdout-missing-period",
+          "expected_evidence": false,
+          "returned_evidence": false,
+          "supported_hit_at_3": null,
+          "correct_abstention": true,
+          "exact_spans_valid": true,
+          "retrieved_span_ids": []
+        },
+        {
+          "id": "holdout-product-split",
+          "expected_evidence": false,
+          "returned_evidence": false,
+          "supported_hit_at_3": null,
+          "correct_abstention": true,
+          "exact_spans_valid": true,
+          "retrieved_span_ids": []
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Holdout is separately authored, not independently reviewed.",
+    "Tiny fixtures cannot establish generalization or semantic grounding.",
+    "No LLM is called or evaluated by this script."
+  ]
+}
