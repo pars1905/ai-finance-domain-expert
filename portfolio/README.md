@@ -1,7 +1,7 @@
 # Finance AI portfolio — evaluation first
 
-Seven runnable projects, followed by five planned engineering/ML projects.
-Python 3.10+; standard library only. Default demos are offline and need no keys.
+Eight runnable projects, followed by four planned engineering/ML projects.
+Python 3.10+; standard library only. Default demos are local and need no external API keys.
 Projects 04–07 optionally request model output with `--ai`; that mode needs
 your API credentials and may incur charges. No real-key call has been verified.
 These are local portfolio prototypes built with AI assistance, not deployed client work.
@@ -17,6 +17,7 @@ client documents, or measured model outputs.
 | 05 | [Cash Collection Prioritization Workbench](05-cash-collection-workbench/) | Dispute/promise-aware queue and explicit cash scenarios | Runnable |
 | 06 | [Supplier Proposal Comparison Assistant](06-supplier-proposal-assistant/) | Total contract cost, eligibility and weight sensitivity | Runnable |
 | 07 | [Cited Financial Document Assistant](07-cited-financial-assistant/) | Company/period-filtered BM25, exact spans, structured cited drafts | Runnable; live model pending |
+| 08 | [Finance Review API](08-finance-review-api/) | Authenticated loopback HTTP, SQLite, approval roles, atomic idempotency and concurrency | Runnable; real local HTTP verified |
 
 From the repository root:
 
@@ -24,8 +25,9 @@ From the repository root:
 python portfolio/run_checks.py
 ```
 
-This runs 88 unit tests and regenerates seven `sample-report.json` files plus
-Markdown reports for projects 04–07 and project 07's authored retrieval evaluation.
+This runs 114 automated tests and regenerates eight `sample-report.json` files plus
+Markdown reports for projects 04–08 and project 07's authored retrieval evaluation.
+Project 08 uses a temporary loopback HTTP server and database; UUIDs/timestamps vary.
 Each project accepts a custom JSON input.
 Run each directory's tests with `python -m unittest discover -v` inside it.
 Projects 04–06 use shared parent helpers; retain the portfolio folder structure.
@@ -49,6 +51,9 @@ Projects 04–06 use shared parent helpers; retain the portfolio folder structur
 7. Project 07 retrieves source excerpts by company/period. Its separately
    authored holdout has four supported hits and four abstentions in eight cases;
    this small retrieval check does not measure generated-answer accuracy.
+8. Project 08 imports fictional project 07 evidence into a local authenticated
+   review API. It demonstrates independent approval and exactly one local mock
+   receipt under repeated requests; no real financial operation is performed.
 
 See [ROADMAP.md](ROADMAP.md) for all 12 planned projects and acceptance criteria.
 See [LEARNING_GUIDE_TR.md](LEARNING_GUIDE_TR.md) before putting these on a CV.

@@ -1,0 +1,54 @@
+{
+  "title": "Review fictional ExampleCo FY2025 revenue evidence",
+  "source_project": "07",
+  "report": {
+    "project": "Cited Financial Document Assistant",
+    "question": "What was ExampleCo revenue in FY2025?",
+    "filters": {
+      "entity": "ExampleCo",
+      "period": "FY2025"
+    },
+    "corpus_sha256": "c11ff481d081c77a8825feb007018b8b0c9ff80027446f8f6e221011765b949b",
+    "retrieval": [
+      {
+        "span_id": "exampleco-2025-income:0-76",
+        "source_id": "exampleco-2025-income",
+        "title": "ExampleCo FY2025 \u2014 fictional income statement",
+        "entity": "ExampleCo",
+        "period": "FY2025",
+        "start": 0,
+        "end": 76,
+        "source_sha256": "6fb32dd893fd99370afdb149088d9942972d094c90631073eeedee5f5074de8f",
+        "quote": "ExampleCo FY2025 revenue was USD 120 million. Revenue figures are unaudited.",
+        "score": 2.43436158,
+        "query_term_coverage": 1.0,
+        "matched_terms": [
+          "revenue"
+        ]
+      }
+    ],
+    "retrieval_method": "paragraph BM25; query coverage >=0.6; top_k=3",
+    "status": "source_excerpts",
+    "excerpts": [
+      {
+        "text": "ExampleCo FY2025 revenue was USD 120 million. Revenue figures are unaudited.",
+        "citation": {
+          "span_id": "exampleco-2025-income:0-76",
+          "source_id": "exampleco-2025-income",
+          "start": 0,
+          "end": 76,
+          "source_sha256": "6fb32dd893fd99370afdb149088d9942972d094c90631073eeedee5f5074de8f"
+        }
+      }
+    ],
+    "generated_answer": {
+      "status": "not_requested"
+    },
+    "requires_human_review": true,
+    "limitations": [
+      "Lexical relevance does not establish answerability or entailment.",
+      "Citation validation checks exact text and limited number tokens, not truth.",
+      "Sources and filters must be independently verified. No investment decisions are made."
+    ]
+  }
+}

@@ -68,7 +68,7 @@ This project significantly deepened my understanding of:
 
 ## Runnable Finance AI Portfolio
 
-Seven AI-assisted Python prototypes with synthetic fixtures, 88 unit tests, and reproducible reports:
+Eight AI-assisted Python prototypes with synthetic fixtures, 114 automated tests, and inspectable reports:
 
 1. [Financial Answer Evaluator](portfolio/01-financial-answer-evaluator/) — WACC, terminal value and margin checks.
 2. [Evidence Auditor](portfolio/02-evidence-auditor/) — exact quotations and period/unit-aware fact validation.
@@ -77,8 +77,9 @@ Seven AI-assisted Python prototypes with synthetic fixtures, 88 unit tests, and 
 5. [Cash Collection Prioritization Workbench](portfolio/05-cash-collection-workbench/) — disputed/promise-aware queues and explicit cash scenarios.
 6. [Supplier Proposal Comparison Assistant](portfolio/06-supplier-proposal-assistant/) — comparable contract cost, eligibility and weight sensitivity.
 7. [Cited Financial Document Assistant](portfolio/07-cited-financial-assistant/) — filtered retrieval, exact source spans and optional validated cited drafts.
+8. [Finance Review API](portfolio/08-finance-review-api/) — authenticated local HTTP, immutable snapshots, role-separated approval and transactional idempotency.
 
 [Run all checks](portfolio/) · [12-project roadmap](portfolio/ROADMAP.md) · [Turkish learning guide](portfolio/LEARNING_GUIDE_TR.md)
 
-These are local portfolio prototypes, not production systems or real model benchmarks. No confidential client data is included. Projects 04–07 include optional model adapters tested with mocked responses; no live model call has been verified. Project 07 has a separate authored retrieval evaluation, not a real-model benchmark. Roadmap projects 08–12 remain planned.
+These are local portfolio prototypes, not production systems or real model benchmarks. No confidential client data is included. Projects 04–07 include optional model adapters tested with mocked responses; no live model call has been verified. Project 07 has a separate authored retrieval evaluation, not a real-model benchmark. Project 08 is verified through real loopback HTTP, with no external ERP operation. Roadmap projects 09–12 remain planned.
 

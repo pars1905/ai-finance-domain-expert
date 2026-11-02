@@ -1,0 +1,171 @@
+{
+  "project": "Finance Review API",
+  "scope": "real local HTTP integration over fictional financial evidence",
+  "steps": [
+    {
+      "actor": "unauthenticated",
+      "method": "POST",
+      "path": "/v1/reviews",
+      "http_status": 401,
+      "replayed": false,
+      "result_status": null,
+      "error": "Bearer credential required"
+    },
+    {
+      "actor": "demo-analyst",
+      "method": "POST",
+      "path": "/v1/reviews",
+      "http_status": 201,
+      "replayed": false,
+      "result_status": "DRAFT",
+      "error": null
+    },
+    {
+      "actor": "demo-analyst",
+      "method": "POST",
+      "path": "/v1/reviews",
+      "http_status": 201,
+      "replayed": true,
+      "result_status": "DRAFT",
+      "error": null
+    },
+    {
+      "actor": "demo-analyst",
+      "method": "POST",
+      "path": "/v1/reviews/656511db81b8406b8d212f0c4436f747/approve",
+      "http_status": 403,
+      "replayed": false,
+      "result_status": null,
+      "error": "Role cannot perform this action"
+    },
+    {
+      "actor": "demo-analyst",
+      "method": "POST",
+      "path": "/v1/reviews/656511db81b8406b8d212f0c4436f747/submit",
+      "http_status": 200,
+      "replayed": false,
+      "result_status": "SUBMITTED",
+      "error": null
+    },
+    {
+      "actor": "demo-approver",
+      "method": "POST",
+      "path": "/v1/reviews/656511db81b8406b8d212f0c4436f747/approve",
+      "http_status": 409,
+      "replayed": false,
+      "result_status": null,
+      "error": "Stale review version; reload before deciding"
+    },
+    {
+      "actor": "demo-approver",
+      "method": "POST",
+      "path": "/v1/reviews/656511db81b8406b8d212f0c4436f747/approve",
+      "http_status": 200,
+      "replayed": false,
+      "result_status": "APPROVED",
+      "error": null
+    },
+    {
+      "actor": "demo-operator",
+      "method": "POST",
+      "path": "/v1/reviews/656511db81b8406b8d212f0c4436f747/mock-post",
+      "http_status": 200,
+      "replayed": false,
+      "result_status": "MOCK_POSTED",
+      "error": null
+    },
+    {
+      "actor": "demo-operator",
+      "method": "POST",
+      "path": "/v1/reviews/656511db81b8406b8d212f0c4436f747/mock-post",
+      "http_status": 200,
+      "replayed": true,
+      "result_status": "MOCK_POSTED",
+      "error": null
+    },
+    {
+      "actor": "demo-operator",
+      "method": "POST",
+      "path": "/v1/reviews/656511db81b8406b8d212f0c4436f747/mock-post",
+      "http_status": 409,
+      "replayed": false,
+      "result_status": null,
+      "error": "Invalid workflow transition"
+    },
+    {
+      "actor": "demo-approver",
+      "method": "GET",
+      "path": "/v1/reviews/656511db81b8406b8d212f0c4436f747/events",
+      "http_status": 200,
+      "replayed": false,
+      "result_status": null,
+      "error": null
+    },
+    {
+      "actor": "demo-analyst",
+      "method": "GET",
+      "path": "/v1/reviews/656511db81b8406b8d212f0c4436f747",
+      "http_status": 200,
+      "replayed": false,
+      "result_status": "MOCK_POSTED",
+      "error": null
+    }
+  ],
+  "final_status": "MOCK_POSTED",
+  "final_version": 4,
+  "snapshot_sha256": "121c9995bc2405f75149f579fd3caf10fa2e4b23eb61ce8f7daad9e5f132861f",
+  "mock_receipt": {
+    "created_at": "2026-11-02T19:03:25.468323+00:00",
+    "receipt_id": "mock-c3d7c5bbbc404f119a4addd989e56263",
+    "snapshot_sha": "121c9995bc2405f75149f579fd3caf10fa2e4b23eb61ce8f7daad9e5f132861f"
+  },
+  "events": [
+    {
+      "actor": "demo-analyst",
+      "created_at": "2026-11-02T19:03:25.442799+00:00",
+      "from_status": null,
+      "note": "Snapshot created; source truth not verified.",
+      "review_id": "656511db81b8406b8d212f0c4436f747",
+      "sequence": 1,
+      "to_status": "DRAFT",
+      "version": 1
+    },
+    {
+      "actor": "demo-analyst",
+      "created_at": "2026-11-02T19:03:25.452606+00:00",
+      "from_status": "DRAFT",
+      "note": "Evidence ready for independent review",
+      "review_id": "656511db81b8406b8d212f0c4436f747",
+      "sequence": 2,
+      "to_status": "SUBMITTED",
+      "version": 2
+    },
+    {
+      "actor": "demo-approver",
+      "created_at": "2026-11-02T19:03:25.462473+00:00",
+      "from_status": "SUBMITTED",
+      "note": "Checked fictional source excerpt",
+      "review_id": "656511db81b8406b8d212f0c4436f747",
+      "sequence": 3,
+      "to_status": "APPROVED",
+      "version": 3
+    },
+    {
+      "actor": "demo-operator",
+      "created_at": "2026-11-02T19:03:25.468339+00:00",
+      "from_status": "APPROVED",
+      "note": "Record local mock receipt only",
+      "review_id": "656511db81b8406b8d212f0c4436f747",
+      "sequence": 4,
+      "to_status": "MOCK_POSTED",
+      "version": 4
+    }
+  ],
+  "credentials": "ephemeral; not saved or displayed",
+  "external_effects": "none; mock receipt exists only in the temporary SQLite database",
+  "limitations": [
+    "Loopback HTTP demo, not a production server or identity provider.",
+    "Stored source evidence is supplied, not independently authenticated.",
+    "This service performs no model call or real ERP/payment operation."
+  ]
+}

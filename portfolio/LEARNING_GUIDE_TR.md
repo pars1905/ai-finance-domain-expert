@@ -1,6 +1,6 @@
 # Projeleri anlayarak kullanma rehberi
 
-Bu yedi proje AI yardımıyla hazırlanmış portföy prototipleridir. Mesleki deneyim,
+Bu sekiz proje AI yardımıyla hazırlanmış portföy prototipleridir. Mesleki deneyim,
 üretim sistemi veya gerçek müşteri başarısı olarak sunulmamalıdır. CV'de
 kullanırken kendi katkını, test ettiğin kapsamı ve açıklayabildiğin kodu anlat.
 
@@ -90,4 +90,30 @@ bu yol henüz doğrulanmadı. Doğru bir alıntı, yorumun doğru olduğu anlam�
 sentetik ve bağımsız uzman tarafından doğrulanmamış örneklerdir. Sonucu gerçek
 model başarı oranı olarak CV'ye yazma. Bir sonraki aşama, izinli modelle canlı
 deneme ve bağımsız hazırlanmış yeni sorularla kaynak/yanıt incelemesidir.
+
+## 08 — Finansal inceleme API'si
+
+```bash
+python portfolio/08-finance-review-api/demo.py
+```
+
+Bu demo gerçekten yerel HTTP sunucusu açar; üç geçici kimlik bilgisi ve geçici
+SQLite veri tabanı kullanır. Anahtarları yazdırmaz, dış sisteme istek göndermez.
+07 projesindeki hayali finansal belge raporu bir inceleme kaydına dönüştürülür.
+
+Akışı anlat: analist taslak oluşturur ve gönderir; farklı bir onaylayıcı karar
+verir; operatör sadece onaylı kayda yerel örnek işlem kaydı ekler. Bu gerçek
+ödeme veya ERP kaydı değildir. 401 kimlik bilgisinin eksik/yanlış, 403 yetkinin
+yetersiz, 409 ise sürüm/durum veya tekrar istek çakışması olduğunu gösterir.
+
+Aynı istek aynı `Idempotency-Key` ile tekrar gelince neden yeni kayıt oluşmadığını
+açıkla. Yeni bir anahtarla aynı iş raporunu iki kez oluşturmanın hâlâ mümkün
+olduğunu fark et: istek tekrarı önleme, işletmedeki tüm mükerrer kayıtları bulma
+anlamına gelmez. `expected_version`, sen rapora bakarken başka birinin karar
+vermesi durumunda eski sürüm üzerinden işlem yapılmasını engeller.
+
+`test_receipt_failure_rolls_back_status_event_and_key` testini incele: örnek işlem
+kaydı yazılamazsa onay durumu, denetim olayı ve başarılı istek kaydı kısmen
+ilerlemez. Bunun gerçek dış sistemlerle tek seferlik işlem garantisi olmadığını
+anlat. Yerel HTTP testi yapılmıştır; üretim ortamına dağıtım yapılmamıştır.
 
