@@ -6,6 +6,14 @@ from audit import audit, audit_claim
 
 
 class EvidenceChecks(unittest.TestCase):
+    def test_incomplete_facts_cannot_pass_by_matching_missing_fields(self):
+        source = {'s': {'text': 'Source', 'facts': [{'value': '10'}]}}
+        result = audit_claim({'source_id': 's', 'kind': 'fact', 'value': '10'}, source)
+        self.assertEqual(result['status'], 'review')
+
+    def test_malformed_source_identifier_needs_review(self):
+        self.assertEqual(audit_claim({'source_id': []}, {})['status'], 'review')
+
     def setUp(self):
         self.data = json.loads(Path(__file__).with_name('claims.json').read_text())
 

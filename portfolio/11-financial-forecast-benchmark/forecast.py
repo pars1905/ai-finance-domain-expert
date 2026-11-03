@@ -4,6 +4,7 @@ import json
 import math
 import random
 from pathlib import Path
+from statistics import median
 
 
 def series(seed=43, n=72):
@@ -12,13 +13,11 @@ def series(seed=43, n=72):
             for t in range(n)]
 
 
-def median(values):
-    ordered = sorted(values)
-    return ordered[len(ordered) // 2]
-
-
 def evaluate(values, start=36, season=12):
-    if len(values) < start + 12 or start < season * 2 or season < 2 or any(not math.isfinite(v) for v in values):
+    if (type(start) is not int or type(season) is not int or season < 2
+            or start <= season * 2 or len(values) < start + 12
+            or any(isinstance(v, bool) or not isinstance(v, (int, float))
+                   or not math.isfinite(v) for v in values)):
         raise ValueError('Insufficient finite history')
     rows = []
     for t in range(start, len(values)):

@@ -1,11 +1,13 @@
 import concurrent.futures
 import http.client
 import json
+import sqlite3
 import tempfile
 import threading
 import unittest
 from pathlib import Path
-from service import Server, db, handler, metrics, run_evaluation
+from unittest.mock import patch
+from service import Server, db, handler, metrics, reserve, run_evaluation
 
 TOKEN = 'x' * 40
 KEY = 'fake-key-for-injected-transport'
@@ -18,6 +20,60 @@ def success(payload, key, timeout):
 
 
 class ServiceTests(unittest.TestCase):
+    def test_non_json_error_respects_http_retry_policy(self):
+        for code, expected_attempts in ((401, 1), (400, 1), (503, 3)):
+            with self.subTest(code=code):
+                result = run_evaluation(self.path, 'hello', 'mock', KEY,
+                    transport=lambda *a: (code, b'<html>error</html>'),
+                    now=1760000000, sleeper=lambda _: None, per_minute=20)
+                self.assertEqual(result['attempts'], expected_attempts)
+                self.assertEqual(result['status'], 'upstream_failure')
+
+    def test_database_connections_are_closed(self):
+        opened = []
+        def tracked(path):
+            connection = db(path)
+            opened.append(connection)
+            return connection
+        with patch('service.db', side_effect=tracked):
+            self.run_eval()
+            metrics(self.path)
+        self.assertGreaterEqual(len(opened), 4)
+        for connection in opened:
+            with self.assertRaises(sqlite3.ProgrammingError):
+                connection.execute('SELECT 1')
+
+    def test_invalid_limits_do_not_call_upstream(self):
+        for limits in ({'daily_budget': 0}, {'per_minute': -1}, {'per_minute': True}):
+            with self.subTest(limits=limits), self.assertRaises(ValueError):
+                self.run_eval(**limits)
+
+    def test_http_rejects_ambiguous_headers_and_unicode_auth(self):
+        server = Server(('127.0.0.1', 0), handler(self.path, TOKEN, 'mock', KEY, 5000, 5, success))
+        thread = threading.Thread(target=server.serve_forever)
+        thread.start()
+        self.addCleanup(lambda: (server.shutdown(), thread.join(), server.server_close()))
+        for headers, expected in (
+            ([('Authorization', 'Bearer ' + TOKEN)], 411),
+            ([('Authorization', 'Bearer ' + TOKEN), ('Content-Length', '2'),
+              ('Content-Length', '2')], 411),
+            ([('Authorization', 'Bearer ' + TOKEN), ('Authorization', 'Bearer ' + TOKEN)], 401),
+            ([('Authorization', 'Bearer \xff')], 401),
+        ):
+            with self.subTest(headers=headers):
+                connection = http.client.HTTPConnection('127.0.0.1', server.server_port, timeout=3)
+                try:
+                    connection.putrequest('POST', '/v1/evaluations')
+                    connection.putheader('Content-Type', 'application/json')
+                    for name, value in headers:
+                        connection.putheader(name, value)
+                    connection.endheaders()
+                    response = connection.getresponse()
+                    self.assertEqual(response.status, expected)
+                    response.read()
+                finally:
+                    connection.close()
+
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
@@ -69,11 +125,17 @@ class ServiceTests(unittest.TestCase):
 
     def test_reservations_atomic_under_concurrency(self):
         barrier = threading.Barrier(4)
+        def synchronized_reserve(*args):
+            result = reserve(*args)
+            # Keep the successful reservation pending until all contenders have
+            # checked it. Otherwise a fast completion can legitimately free budget.
+            barrier.wait(timeout=5)
+            return result
         def one(_):
-            barrier.wait()
             return run_evaluation(self.path, 'hello', 'mock', KEY, daily_budget=783,
                                   transport=success, now=1760000000, sleeper=lambda _: None)['status']
-        with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+        with patch('service.reserve', side_effect=synchronized_reserve), \
+                concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
             results = list(pool.map(one, range(4)))
         self.assertEqual(results.count('completed'), 1)
         self.assertEqual(results.count('budget_limit'), 3)

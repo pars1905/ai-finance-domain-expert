@@ -68,22 +68,12 @@ This project significantly deepened my understanding of:
 
 ## Runnable Finance AI Portfolio
 
-Eight AI-assisted Python prototypes with synthetic fixtures, 114 automated tests, and inspectable reports:
+Twelve AI-assisted Python prototypes with synthetic fixtures, automated regression tests, and inspectable reports. See the [complete project list and setup instructions](portfolio/README.md).
 
-1. [Financial Answer Evaluator](portfolio/01-financial-answer-evaluator/) — WACC, terminal value and margin checks.
-2. [Evidence Auditor](portfolio/02-evidence-auditor/) — exact quotations and period/unit-aware fact validation.
-3. [Evaluation Release Gate](portfolio/03-evaluation-release-gate/) — paired outcomes and quality/cost/latency gates.
-4. [Budget Variance Investigation Assistant](portfolio/04-budget-variance-assistant/) — price/volume bridges and analyst review.
-5. [Cash Collection Prioritization Workbench](portfolio/05-cash-collection-workbench/) — disputed/promise-aware queues and explicit cash scenarios.
-6. [Supplier Proposal Comparison Assistant](portfolio/06-supplier-proposal-assistant/) — comparable contract cost, eligibility and weight sensitivity.
-7. [Cited Financial Document Assistant](portfolio/07-cited-financial-assistant/) — filtered retrieval, exact source spans and optional validated cited drafts.
-8. [Finance Review API](portfolio/08-finance-review-api/) — authenticated local HTTP, immutable snapshots, role-separated approval and transactional idempotency.
+The portfolio covers financial answer evaluation, evidence auditing, release gates, budget variance, cash collection, supplier comparison, cited document retrieval, a review API, an observable evaluation service, grouped classification, forecasting, and a unit-check experiment.
+
+Projects 08–09 are verified with real loopback HTTP and SQLite. Project 10 uses NumPy and scikit-learn; the remaining default demos use the Python standard library. Optional model adapters are tested with mocked responses; live model calls have not been verified.
+
+These are local portfolio prototypes, not production systems or real model benchmarks. All examples use authored synthetic data and require personal review before any CV claim. No confidential client data is included.
 
 [Run all checks](portfolio/) · [12-project roadmap](portfolio/ROADMAP.md) · [Turkish learning guide](portfolio/LEARNING_GUIDE_TR.md)
-
-These are local portfolio prototypes, not production systems or real model benchmarks. No confidential client data is included. Projects 04–07 include optional model adapters tested with mocked responses; no live model call has been verified. Project 07 has a separate authored retrieval evaluation, not a real-model benchmark. Project 08 is verified through real loopback HTTP, with no external ERP operation. Roadmap projects 09–12 remain planned.
-
-
-Project 09 adds a [local observable evaluation service](portfolio/09-observable-evaluation-service/) with SQLite-backed quotas and synthetic upstream telemetry; no live model request has been verified.
-
-All twelve [portfolio projects](portfolio/README.md) are now runnable prototypes. Project 10 uses NumPy and scikit-learn; the remaining demos use the Python standard library. Examples are synthetic and require personal review before any CV claim.

@@ -3,6 +3,22 @@ from classify import fixture, evaluate
 
 
 class ClassifierTests(unittest.TestCase):
+    def test_labels_are_not_silently_coerced(self):
+        for label in (0.9, 1.9, '1', True, None):
+            rows = fixture()
+            rows[0]['exception'] = label
+            with self.subTest(label=label), self.assertRaises(ValueError):
+                evaluate(rows)
+
+    def test_invalid_feature_domains(self):
+        for field, value in (('missing_evidence', 2), ('days_since_review', -1),
+                             ('absolute_variance', -1), ('group', ''),
+                             ('variance_pct', True)):
+            rows = fixture()
+            rows[0][field] = value
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                evaluate(rows)
+
     def test_group_separation_and_reproducibility(self):
         a = evaluate(fixture())
         self.assertEqual(a, evaluate(fixture()))

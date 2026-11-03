@@ -31,7 +31,22 @@ def fixture(seed=19):
 
 
 def evaluate(rows):
-    if not rows or len({r['group'] for r in rows}) < 10:
+    if not isinstance(rows, list) or not rows:
+        raise ValueError('Expected a non-empty row list')
+    for row in rows:
+        if not isinstance(row, dict) or any(k not in row for k in (*FEATURES, 'group', 'exception')):
+            raise ValueError('Missing classifier fields')
+        if not isinstance(row['group'], str) or not row['group'].strip():
+            raise ValueError('Group must be a non-empty string')
+        if type(row['exception']) is not int or row['exception'] not in (0, 1):
+            raise ValueError('Labels must be integer 0 or 1')
+        if any(isinstance(row[f], bool) or not isinstance(row[f], (int, float)) for f in FEATURES):
+            raise ValueError('Features must be numeric')
+        if (row['absolute_variance'] < 0 or type(row['days_since_review']) is not int
+                or row['days_since_review'] < 0 or type(row['missing_evidence']) is not int
+                or row['missing_evidence'] not in (0, 1)):
+            raise ValueError('Invalid amount, review age or evidence flag')
+    if len({r['group'] for r in rows}) < 10:
         raise ValueError('At least ten groups required')
     x = np.array([[r[f] for f in FEATURES] for r in rows], dtype=float)
     y = np.array([r['exception'] for r in rows], dtype=int)

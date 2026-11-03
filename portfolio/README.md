@@ -23,13 +23,18 @@ client documents, or measured model outputs.
 | 11 | [Financial Forecast Benchmark](11-financial-forecast-benchmark/) | Rolling backtest, seasonal naive, MASE, leakage check, intervals | Runnable synthetic benchmark |
 | 12 | [Financial Reasoning Experiment](12-financial-reasoning-experiment/) | Paired unit-check ablation, seeded bootstrap and negative result | Runnable authored experiment |
 
-From the repository root:
+From the repository root, create a virtual environment and install the classifier dependencies:
 
 ```bash
-python portfolio/run_checks.py
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r portfolio/10-budget-exception-classifier/requirements.txt
+python portfolio/run_checks.py --output-dir /tmp/finance-portfolio-reports
 ```
 
-This runs 131 automated tests and regenerates twelve `sample-report.json` files plus
+`--output-dir` keeps generated reports outside the checkout. Omit it to regenerate the committed sample reports. GitHub Actions runs the same checks on Python 3.10 and 3.12.
+
+This runs 142 automated tests and regenerates twelve `sample-report.json` files plus
 Markdown reports for projects 04–08 and project 07's authored retrieval evaluation.
 Project 08 uses a temporary loopback HTTP server and database; UUIDs/timestamps vary.
 Each project accepts a custom JSON input.
@@ -65,7 +70,7 @@ Projects 04–06 use shared parent helpers; retain the portfolio folder structur
 11. Project 11 compares seasonal naive and drift forecasts on one synthetic monthly series.
 12. Project 12 tests a unit-check ablation on 12 authored answers, not model reasoning.
 
-See [ROADMAP.md](ROADMAP.md) for all 12 planned projects and acceptance criteria.
+See [ROADMAP.md](ROADMAP.md) for all 12 projects and acceptance criteria.
 See [LEARNING_GUIDE_TR.md](LEARNING_GUIDE_TR.md) before putting these on a CV.
 
 ## Next validation step

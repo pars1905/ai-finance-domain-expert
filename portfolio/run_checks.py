@@ -1,4 +1,5 @@
 """Run all twelve project suites and regenerate local sample reports."""
+import argparse
 import subprocess
 import sys
 from pathlib import Path
@@ -17,18 +18,26 @@ PROJECTS = [('01-financial-answer-evaluator', 'evaluate.py'),
             ('11-financial-forecast-benchmark', 'forecast.py'),
             ('12-financial-reasoning-experiment', 'experiment.py')]
 
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--output-dir', type=Path, help='Write generated reports outside the checkout')
+args = parser.parse_args()
+output_root = args.output_dir.resolve() if args.output_dir else ROOT
+
 subprocess.run([sys.executable, '-m', 'unittest', 'discover', '-v',
                 '-p', 'test_business_tools.py'], cwd=ROOT, check=True)
 
 for folder, script in PROJECTS:
     path = ROOT / folder
     subprocess.run([sys.executable, '-m', 'unittest', 'discover', '-v'], cwd=path, check=True)
-    args = [sys.executable, script, '--output', 'sample-report.json']
+    destination = output_root / folder
+    destination.mkdir(parents=True, exist_ok=True)
+    args = [sys.executable, script, '--output', str(destination / 'sample-report.json')]
     if folder.startswith(('04-', '05-', '06-', '07-', '08-')):
-        args += ['--markdown', 'sample-report.md']
+        args += ['--markdown', str(destination / 'sample-report.md')]
     result = subprocess.run(args, cwd=path, check=True, capture_output=True, text=True)
     print(f'{folder}: sample report regenerated', flush=True)
 
-subprocess.run([sys.executable, 'evaluate.py', '--output', 'evaluation-report.json'],
+subprocess.run([sys.executable, 'evaluate.py', '--output',
+                str(output_root / '07-cited-financial-assistant' / 'evaluation-report.json')],
                cwd=ROOT / '07-cited-financial-assistant', check=True, capture_output=True, text=True)
 print('07-cited-financial-assistant: development/holdout retrieval report regenerated', flush=True)

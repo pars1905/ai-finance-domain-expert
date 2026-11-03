@@ -3,6 +3,12 @@ from experiment import cases, decision, run
 
 
 class ExperimentTests(unittest.TestCase):
+    def test_undefined_false_acceptance_is_rejected(self):
+        with self.assertRaises(ValueError):
+            run([c for c in cases() if c['kind'] == 'correct'])
+        with self.assertRaises(ValueError):
+            run(seeds=())
+
     def test_paired_ablation_and_negative_result(self):
         result = run()
         self.assertEqual(result['baseline_false_accept'], .5)

@@ -20,6 +20,8 @@ def decimal(value):
 def audit_claim(claim, sources):
     if not isinstance(claim, dict):
         return {'status': 'review', 'reason': 'malformed_claim'}
+    if not isinstance(claim.get('source_id'), str):
+        return {'status': 'review', 'reason': 'malformed_claim'}
     source = sources.get(claim.get('source_id'))
     if source is None:
         return {'status': 'fail', 'reason': 'unknown_source'}
@@ -32,6 +34,9 @@ def audit_claim(claim, sources):
         return {'status': 'pass' if present else 'fail',
                 'reason': 'exact_quote_found' if present else 'quote_not_found'}
     if claim.get('kind') == 'fact':
+        if any(not isinstance(claim.get(k), str) or not claim[k].strip()
+               for k in ('metric', 'period', 'unit')):
+            return {'status': 'review', 'reason': 'missing_or_ambiguous_fact'}
         matches = [f for f in source['facts']
                    if all(f.get(k) == claim.get(k) for k in ('metric', 'period', 'unit'))]
         if len(matches) != 1:
@@ -55,7 +60,8 @@ def audit(data):
     if not claims:
         raise ValueError('No claims supplied')
     for s in sources:
-        if not isinstance(s.get('text'), str) or not isinstance(s.get('facts'), list):
+        if (not isinstance(s.get('text'), str) or not isinstance(s.get('facts'), list)
+                or any(not isinstance(f, dict) for f in s['facts'])):
             raise ValueError('Malformed source')
     corpus = {s['id']: s for s in sources}
     rows = [{'id': c['id'], **audit_claim(c, corpus)} for c in claims]

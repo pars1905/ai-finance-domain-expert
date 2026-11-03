@@ -3,6 +3,7 @@ import argparse
 import json
 import sqlite3
 from datetime import datetime, timezone
+from contextlib import closing
 from pathlib import Path
 from finance_tools import digest, text
 
@@ -16,7 +17,7 @@ def record(report, item_id, decision, reviewer, note, database):
     if len(matches) != 1 or matches[0].get('requires_human_review') is not True:
         raise ValueError('Item must uniquely identify a reviewable finding')
     fingerprint = digest(report)
-    with sqlite3.connect(database) as connection:
+    with closing(sqlite3.connect(database)) as connection, connection:
         connection.execute('''CREATE TABLE IF NOT EXISTS reviews (
             report_sha TEXT NOT NULL, item_id TEXT NOT NULL, decision TEXT NOT NULL,
             reviewer TEXT NOT NULL, note TEXT NOT NULL, created_at TEXT NOT NULL,

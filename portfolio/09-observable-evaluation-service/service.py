@@ -9,6 +9,7 @@ import time
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
+from contextlib import closing
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
@@ -34,7 +35,7 @@ def db(path):
 
 def reserve(path, prompt_hash, capacity, daily_budget, per_minute, now):
     day = datetime.fromtimestamp(now, timezone.utc).date().isoformat()
-    with db(path) as c:
+    with closing(db(path)) as c, c:
         c.execute('BEGIN IMMEDIATE')
         count = c.execute('SELECT count(*) FROM requests WHERE at>?', (now - 60,)).fetchone()[0]
         used = c.execute('SELECT reserved FROM budgets WHERE day=?', (day,)).fetchone()
@@ -48,14 +49,14 @@ def reserve(path, prompt_hash, capacity, daily_budget, per_minute, now):
 
 
 def finish(path, rid, day, reserved, actual, status):
-    with db(path) as c:
+    with closing(db(path)) as c, c:
         c.execute('BEGIN IMMEDIATE')
         c.execute('UPDATE requests SET status=?,actual=? WHERE id=?', (status, actual, rid))
         c.execute('UPDATE budgets SET reserved=reserved-? WHERE day=?', (reserved - actual, day))
 
 
 def record(path, rid, attempt, latency, http_status, input_tokens, output_tokens, outcome):
-    with db(path) as c:
+    with closing(db(path)) as c, c:
         c.execute('INSERT INTO attempts VALUES(?,?,?,?,?,?,?,?)', (rid, attempt, utc(), latency, http_status, input_tokens, output_tokens, outcome))
 
 
@@ -78,8 +79,10 @@ def run_evaluation(path, prompt, model, api_key, daily_budget=6000, per_minute=5
                    transport=None, now=None, sleeper=time.sleep):
     if not isinstance(prompt, str) or not 1 <= len(prompt) <= 2000 or not prompt.strip():
         raise ValueError('prompt must be 1–2000 characters')
-    if not model or not api_key:
+    if any(not isinstance(v, str) or not v.strip() for v in (model, api_key)):
         raise ValueError('model and upstream API key required')
+    if any(type(v) is not int or v < 1 for v in (daily_budget, per_minute)):
+        raise ValueError('Budgets and rate limits must be positive integers')
     now = time.time() if now is None else now
     # Conservative reservation: each of three attempts may use the full output cap.
     input_estimate = max(1, len(prompt.encode('utf-8')))
@@ -103,9 +106,14 @@ def run_evaluation(path, prompt, model, api_key, daily_budget=6000, per_minute=5
                                    'max_output_tokens': MAX_OUTPUT}, api_key, 10)
                 if len(body) > 65536:
                     raise ValueError('upstream response too large')
-                parsed = json.loads(body)
-                if not isinstance(parsed, dict):
-                    raise ValueError('invalid upstream response')
+                try:
+                    parsed = json.loads(body)
+                    if not isinstance(parsed, dict):
+                        raise ValueError('invalid upstream response')
+                except (ValueError, UnicodeError):
+                    if code == 200:
+                        raise
+                    parsed = {}  # Error bodies may be HTML or empty; retry by HTTP status.
                 usage = parsed.get('usage', {})
                 it = usage.get('input_tokens') if isinstance(usage, dict) else None
                 ot = usage.get('output_tokens') if isinstance(usage, dict) else None
@@ -127,7 +135,8 @@ def run_evaluation(path, prompt, model, api_key, daily_budget=6000, per_minute=5
                     outcome = 'retryable' if code in RETRYABLE else 'upstream_error'
             except (OSError, ValueError, TypeError, KeyError, AttributeError, json.JSONDecodeError):
                 total += input_estimate + MAX_OUTPUT
-                outcome = 'network_or_protocol_error'
+                outcome = ('upstream_error' if code and code != 200 and code not in RETRYABLE
+                           else 'network_or_protocol_error')
                 code = code or 0
                 it = ot = None
             latency = round((time.monotonic() - started) * 1000, 3)
@@ -143,7 +152,7 @@ def run_evaluation(path, prompt, model, api_key, daily_budget=6000, per_minute=5
 
 
 def metrics(path):
-    with db(path) as c:
+    with closing(db(path)) as c, c:
         rows = c.execute('SELECT r.id,r.status,a.number,a.latency_ms,a.http_status,a.input_tokens,a.output_tokens,a.outcome FROM requests r JOIN attempts a ON r.id=a.request_id ORDER BY r.id,a.number').fetchall()
         budgets = c.execute('SELECT day,reserved FROM budgets ORDER BY day').fetchall()
     return {'scope': 'local service telemetry; failed attempt usage can be an upper-bound estimate',
@@ -161,6 +170,10 @@ def handler(db_path, token, model, upstream_key, daily_budget, per_minute, trans
         def log_message(self, format, *args):
             pass  # Avoid logging prompt, authorization header, and query string.
 
+        def setup(self):
+            super().setup()
+            self.connection.settimeout(5)
+
         def reply(self, code, payload):
             raw = json.dumps(payload, ensure_ascii=False).encode()
             self.send_response(code)
@@ -172,7 +185,9 @@ def handler(db_path, token, model, upstream_key, daily_budget, per_minute, trans
             self.wfile.write(raw)
 
         def authorized(self):
-            return hmac.compare_digest(self.headers.get('Authorization', ''), 'Bearer ' + token)
+            headers = self.headers.get_all('Authorization', [])
+            return len(headers) == 1 and hmac.compare_digest(
+                headers[0].encode('utf-8'), ('Bearer ' + token).encode('utf-8'))
 
         def do_GET(self):
             if self.path == '/health':
@@ -180,7 +195,10 @@ def handler(db_path, token, model, upstream_key, daily_budget, per_minute, trans
             if not self.authorized():
                 return self.reply(401, {'error': 'unauthorized'})
             if self.path == '/v1/metrics':
-                return self.reply(200, metrics(db_path))
+                try:
+                    return self.reply(200, metrics(db_path))
+                except sqlite3.Error:
+                    return self.reply(503, {'error': 'database unavailable'})
             return self.reply(404, {'error': 'not_found'})
 
         def do_POST(self):
@@ -191,8 +209,11 @@ def handler(db_path, token, model, upstream_key, daily_budget, per_minute, trans
             if self.headers.get('Content-Type', '').split(';')[0].strip().lower() != 'application/json':
                 return self.reply(415, {'error': 'application/json required'})
             try:
-                length = int(self.headers['Content-Length'])
-            except (KeyError, ValueError):
+                lengths = self.headers.get_all('Content-Length', [])
+                if len(lengths) != 1 or not lengths[0].isascii() or not lengths[0].isdigit():
+                    raise ValueError('one content length required')
+                length = int(lengths[0])
+            except (KeyError, ValueError, TypeError):
                 return self.reply(411, {'error': 'valid content length required'})
             if length < 1 or length > MAX_BODY or self.headers.get('Transfer-Encoding'):
                 return self.reply(413, {'error': 'invalid body size or framing'})
@@ -204,14 +225,19 @@ def handler(db_path, token, model, upstream_key, daily_budget, per_minute, trans
                             raise ValueError('duplicate key')
                         obj[k] = v
                     return obj
-                body = json.loads(self.rfile.read(length), object_pairs_hook=unique,
+                raw = self.rfile.read(length)
+                if len(raw) != length:
+                    raise ValueError('incomplete body')
+                body = json.loads(raw, object_pairs_hook=unique,
                                   parse_constant=lambda _: (_ for _ in ()).throw(ValueError('nonfinite')))
                 if not isinstance(body, dict) or set(body) != {'prompt'}:
                     raise ValueError('only prompt is allowed')
                 result = run_evaluation(db_path, body['prompt'], model, upstream_key,
                                         daily_budget, per_minute, transport=transport)
-            except (ValueError, TypeError, UnicodeDecodeError):
+            except (ValueError, TypeError, UnicodeDecodeError, RecursionError):
                 return self.reply(422, {'error': 'invalid evaluation request'})
+            except sqlite3.Error:
+                return self.reply(503, {'error': 'database unavailable'})
             code = 200 if result['status'] == 'completed' else 429 if result['status'] in ('rate_limit', 'budget_limit') else 502
             return self.reply(code, result)
     return Handler

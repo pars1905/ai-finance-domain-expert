@@ -35,6 +35,10 @@ def run(rows=None, seeds=(7, 11, 23, 47, 91)):
     ids = [c['id'] for c in rows]
     if len(ids) != len(set(ids)) or not rows or any(c['kind'] not in ('correct', 'wrong_unit', 'wrong_number') for c in rows):
         raise ValueError('Invalid authored cases')
+    if not any(c['kind'] != 'correct' for c in rows):
+        raise ValueError('False-acceptance analysis requires negative cases')
+    if not seeds:
+        raise ValueError('At least one bootstrap seed is required')
     paired = [{'id': c['id'], 'kind': c['kind'], 'baseline_accept': decision(c, False),
                'unit_check_accept': decision(c, True)} for c in rows]
     def false_accept(sample, key):

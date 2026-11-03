@@ -9,8 +9,8 @@
     "mase": 1.0194
   },
   "seasonal_drift": {
-    "mae": 3.2531,
-    "mase": 0.368
+    "mae": 3.235,
+    "mase": 0.366
   },
   "interval_coverage": 0.8889,
   "rows": [
@@ -18,9 +18,9 @@
       "time": 36,
       "actual": 119.19,
       "seasonal_naive": 112.88,
-      "seasonal_drift": 122.18,
-      "lower": 114.94,
-      "upper": 129.42,
+      "seasonal_drift": 121.83,
+      "lower": 114.59,
+      "upper": 129.07,
       "calibration_n": 12
     },
     {
@@ -36,9 +36,9 @@
       "time": 38,
       "actual": 132.95,
       "seasonal_naive": 124.45,
-      "seasonal_drift": 133.06,
-      "lower": 125.82,
-      "upper": 140.3,
+      "seasonal_drift": 132.92,
+      "lower": 125.68,
+      "upper": 140.16,
       "calibration_n": 14
     },
     {
@@ -54,9 +54,9 @@
       "time": 40,
       "actual": 131.15,
       "seasonal_naive": 133.16,
-      "seasonal_drift": 141.66,
-      "lower": 134.42,
-      "upper": 148.9,
+      "seasonal_drift": 141.57,
+      "lower": 134.33,
+      "upper": 148.81,
       "calibration_n": 16
     },
     {
@@ -72,9 +72,9 @@
       "time": 42,
       "actual": 131.57,
       "seasonal_naive": 122.34,
-      "seasonal_drift": 130.67,
-      "lower": 123.31,
-      "upper": 138.03,
+      "seasonal_drift": 130.66,
+      "lower": 123.3,
+      "upper": 138.02,
       "calibration_n": 18
     },
     {
@@ -90,9 +90,9 @@
       "time": 44,
       "actual": 119.29,
       "seasonal_naive": 118.26,
-      "seasonal_drift": 126.76,
-      "lower": 119.52,
-      "upper": 134.0,
+      "seasonal_drift": 126.67,
+      "lower": 119.44,
+      "upper": 133.91,
       "calibration_n": 20
     },
     {
@@ -108,9 +108,9 @@
       "time": 46,
       "actual": 128.18,
       "seasonal_naive": 121.58,
-      "seasonal_drift": 130.08,
-      "lower": 122.72,
-      "upper": 137.44,
+      "seasonal_drift": 130.0,
+      "lower": 122.64,
+      "upper": 137.36,
       "calibration_n": 22
     },
     {
@@ -126,9 +126,9 @@
       "time": 48,
       "actual": 133.79,
       "seasonal_naive": 119.19,
-      "seasonal_drift": 127.69,
-      "lower": 120.33,
-      "upper": 135.05,
+      "seasonal_drift": 127.6,
+      "lower": 120.24,
+      "upper": 134.96,
       "calibration_n": 24
     },
     {
@@ -144,9 +144,9 @@
       "time": 50,
       "actual": 139.52,
       "seasonal_naive": 132.95,
-      "seasonal_drift": 141.56,
-      "lower": 134.2,
-      "upper": 148.92,
+      "seasonal_drift": 141.5,
+      "lower": 134.14,
+      "upper": 148.87,
       "calibration_n": 26
     },
     {
@@ -162,9 +162,9 @@
       "time": 52,
       "actual": 144.93,
       "seasonal_naive": 131.15,
-      "seasonal_drift": 139.65,
-      "lower": 132.29,
-      "upper": 147.01,
+      "seasonal_drift": 139.56,
+      "lower": 132.2,
+      "upper": 146.93,
       "calibration_n": 28
     },
     {
@@ -180,9 +180,9 @@
       "time": 54,
       "actual": 141.53,
       "seasonal_naive": 131.57,
-      "seasonal_drift": 140.18,
-      "lower": 132.84,
-      "upper": 147.52,
+      "seasonal_drift": 140.12,
+      "lower": 132.78,
+      "upper": 147.47,
       "calibration_n": 30
     },
     {
@@ -198,9 +198,9 @@
       "time": 56,
       "actual": 134.93,
       "seasonal_naive": 119.29,
-      "seasonal_drift": 128.22,
-      "lower": 120.88,
-      "upper": 135.56,
+      "seasonal_drift": 128.06,
+      "lower": 120.72,
+      "upper": 135.4,
       "calibration_n": 32
     },
     {
@@ -216,9 +216,9 @@
       "time": 58,
       "actual": 135.03,
       "seasonal_naive": 128.18,
-      "seasonal_drift": 137.41,
-      "lower": 130.07,
-      "upper": 144.75,
+      "seasonal_drift": 137.26,
+      "lower": 129.92,
+      "upper": 144.6,
       "calibration_n": 34
     },
     {
@@ -234,9 +234,9 @@
       "time": 60,
       "actual": 141.81,
       "seasonal_naive": 133.79,
-      "seasonal_drift": 142.72,
-      "lower": 135.36,
-      "upper": 150.08,
+      "seasonal_drift": 142.56,
+      "lower": 135.2,
+      "upper": 149.92,
       "calibration_n": 36
     },
     {
@@ -252,9 +252,9 @@
       "time": 62,
       "actual": 154.31,
       "seasonal_naive": 139.52,
-      "seasonal_drift": 148.13,
-      "lower": 140.77,
-      "upper": 155.49,
+      "seasonal_drift": 148.07,
+      "lower": 140.71,
+      "upper": 155.44,
       "calibration_n": 38
     },
     {
@@ -270,9 +270,9 @@
       "time": 64,
       "actual": 153.08,
       "seasonal_naive": 144.93,
-      "seasonal_drift": 153.86,
-      "lower": 146.52,
-      "upper": 161.2,
+      "seasonal_drift": 153.7,
+      "lower": 146.36,
+      "upper": 161.04,
       "calibration_n": 40
     },
     {
@@ -288,9 +288,9 @@
       "time": 66,
       "actual": 150.0,
       "seasonal_naive": 141.53,
-      "seasonal_drift": 150.14,
-      "lower": 142.8,
-      "upper": 157.48,
+      "seasonal_drift": 150.08,
+      "lower": 142.74,
+      "upper": 157.43,
       "calibration_n": 42
     },
     {
@@ -306,9 +306,9 @@
       "time": 68,
       "actual": 143.76,
       "seasonal_naive": 134.93,
-      "seasonal_drift": 143.54,
-      "lower": 136.2,
-      "upper": 150.88,
+      "seasonal_drift": 143.49,
+      "lower": 136.14,
+      "upper": 150.83,
       "calibration_n": 44
     },
     {
@@ -324,9 +324,9 @@
       "time": 70,
       "actual": 144.95,
       "seasonal_naive": 135.03,
-      "seasonal_drift": 143.86,
-      "lower": 136.52,
-      "upper": 151.2,
+      "seasonal_drift": 143.75,
+      "lower": 136.41,
+      "upper": 151.09,
       "calibration_n": 46
     },
     {
