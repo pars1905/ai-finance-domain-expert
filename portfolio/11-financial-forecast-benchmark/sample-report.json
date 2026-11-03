@@ -1,0 +1,346 @@
+{
+  "scope": "authored synthetic monthly revenue; rolling one-step forecasts",
+  "seed": 43,
+  "start": 36,
+  "season": 12,
+  "mase_training_scale": 8.8396,
+  "seasonal_naive": {
+    "mae": 9.0111,
+    "mase": 1.0194
+  },
+  "seasonal_drift": {
+    "mae": 3.2531,
+    "mase": 0.368
+  },
+  "interval_coverage": 0.8889,
+  "rows": [
+    {
+      "time": 36,
+      "actual": 119.19,
+      "seasonal_naive": 112.88,
+      "seasonal_drift": 122.18,
+      "lower": 114.94,
+      "upper": 129.42,
+      "calibration_n": 12
+    },
+    {
+      "time": 37,
+      "actual": 126.37,
+      "seasonal_naive": 121.34,
+      "seasonal_drift": 129.95,
+      "lower": 122.71,
+      "upper": 137.19,
+      "calibration_n": 13
+    },
+    {
+      "time": 38,
+      "actual": 132.95,
+      "seasonal_naive": 124.45,
+      "seasonal_drift": 133.06,
+      "lower": 125.82,
+      "upper": 140.3,
+      "calibration_n": 14
+    },
+    {
+      "time": 39,
+      "actual": 134.1,
+      "seasonal_naive": 127.56,
+      "seasonal_drift": 136.06,
+      "lower": 128.82,
+      "upper": 143.3,
+      "calibration_n": 15
+    },
+    {
+      "time": 40,
+      "actual": 131.15,
+      "seasonal_naive": 133.16,
+      "seasonal_drift": 141.66,
+      "lower": 134.42,
+      "upper": 148.9,
+      "calibration_n": 16
+    },
+    {
+      "time": 41,
+      "actual": 129.02,
+      "seasonal_naive": 126.99,
+      "seasonal_drift": 135.32,
+      "lower": 127.96,
+      "upper": 142.68,
+      "calibration_n": 17
+    },
+    {
+      "time": 42,
+      "actual": 131.57,
+      "seasonal_naive": 122.34,
+      "seasonal_drift": 130.67,
+      "lower": 123.31,
+      "upper": 138.03,
+      "calibration_n": 18
+    },
+    {
+      "time": 43,
+      "actual": 124.5,
+      "seasonal_naive": 115.57,
+      "seasonal_drift": 123.9,
+      "lower": 116.54,
+      "upper": 131.26,
+      "calibration_n": 19
+    },
+    {
+      "time": 44,
+      "actual": 119.29,
+      "seasonal_naive": 118.26,
+      "seasonal_drift": 126.76,
+      "lower": 119.52,
+      "upper": 134.0,
+      "calibration_n": 20
+    },
+    {
+      "time": 45,
+      "actual": 122.66,
+      "seasonal_naive": 112.75,
+      "seasonal_drift": 121.08,
+      "lower": 113.72,
+      "upper": 128.44,
+      "calibration_n": 21
+    },
+    {
+      "time": 46,
+      "actual": 128.18,
+      "seasonal_naive": 121.58,
+      "seasonal_drift": 130.08,
+      "lower": 122.72,
+      "upper": 137.44,
+      "calibration_n": 22
+    },
+    {
+      "time": 47,
+      "actual": 133.95,
+      "seasonal_naive": 124.06,
+      "seasonal_drift": 132.39,
+      "lower": 125.03,
+      "upper": 139.75,
+      "calibration_n": 23
+    },
+    {
+      "time": 48,
+      "actual": 133.79,
+      "seasonal_naive": 119.19,
+      "seasonal_drift": 127.69,
+      "lower": 120.33,
+      "upper": 135.05,
+      "calibration_n": 24
+    },
+    {
+      "time": 49,
+      "actual": 137.36,
+      "seasonal_naive": 126.37,
+      "seasonal_drift": 134.87,
+      "lower": 127.51,
+      "upper": 142.23,
+      "calibration_n": 25
+    },
+    {
+      "time": 50,
+      "actual": 139.52,
+      "seasonal_naive": 132.95,
+      "seasonal_drift": 141.56,
+      "lower": 134.2,
+      "upper": 148.92,
+      "calibration_n": 26
+    },
+    {
+      "time": 51,
+      "actual": 142.14,
+      "seasonal_naive": 134.1,
+      "seasonal_drift": 142.6,
+      "lower": 135.24,
+      "upper": 149.96,
+      "calibration_n": 27
+    },
+    {
+      "time": 52,
+      "actual": 144.93,
+      "seasonal_naive": 131.15,
+      "seasonal_drift": 139.65,
+      "lower": 132.29,
+      "upper": 147.01,
+      "calibration_n": 28
+    },
+    {
+      "time": 53,
+      "actual": 144.86,
+      "seasonal_naive": 129.02,
+      "seasonal_drift": 137.52,
+      "lower": 130.16,
+      "upper": 144.88,
+      "calibration_n": 29
+    },
+    {
+      "time": 54,
+      "actual": 141.53,
+      "seasonal_naive": 131.57,
+      "seasonal_drift": 140.18,
+      "lower": 132.84,
+      "upper": 147.52,
+      "calibration_n": 30
+    },
+    {
+      "time": 55,
+      "actual": 133.77,
+      "seasonal_naive": 124.5,
+      "seasonal_drift": 133.11,
+      "lower": 125.77,
+      "upper": 140.45,
+      "calibration_n": 31
+    },
+    {
+      "time": 56,
+      "actual": 134.93,
+      "seasonal_naive": 119.29,
+      "seasonal_drift": 128.22,
+      "lower": 120.88,
+      "upper": 135.56,
+      "calibration_n": 32
+    },
+    {
+      "time": 57,
+      "actual": 134.19,
+      "seasonal_naive": 122.66,
+      "seasonal_drift": 131.59,
+      "lower": 124.25,
+      "upper": 138.93,
+      "calibration_n": 33
+    },
+    {
+      "time": 58,
+      "actual": 135.03,
+      "seasonal_naive": 128.18,
+      "seasonal_drift": 137.41,
+      "lower": 130.07,
+      "upper": 144.75,
+      "calibration_n": 34
+    },
+    {
+      "time": 59,
+      "actual": 129.95,
+      "seasonal_naive": 133.95,
+      "seasonal_drift": 142.88,
+      "lower": 135.54,
+      "upper": 150.22,
+      "calibration_n": 35
+    },
+    {
+      "time": 60,
+      "actual": 141.81,
+      "seasonal_naive": 133.79,
+      "seasonal_drift": 142.72,
+      "lower": 135.36,
+      "upper": 150.08,
+      "calibration_n": 36
+    },
+    {
+      "time": 61,
+      "actual": 145.85,
+      "seasonal_naive": 137.36,
+      "seasonal_drift": 145.97,
+      "lower": 138.61,
+      "upper": 153.33,
+      "calibration_n": 37
+    },
+    {
+      "time": 62,
+      "actual": 154.31,
+      "seasonal_naive": 139.52,
+      "seasonal_drift": 148.13,
+      "lower": 140.77,
+      "upper": 155.49,
+      "calibration_n": 38
+    },
+    {
+      "time": 63,
+      "actual": 151.25,
+      "seasonal_naive": 142.14,
+      "seasonal_drift": 150.75,
+      "lower": 143.39,
+      "upper": 158.11,
+      "calibration_n": 39
+    },
+    {
+      "time": 64,
+      "actual": 153.08,
+      "seasonal_naive": 144.93,
+      "seasonal_drift": 153.86,
+      "lower": 146.52,
+      "upper": 161.2,
+      "calibration_n": 40
+    },
+    {
+      "time": 65,
+      "actual": 150.28,
+      "seasonal_naive": 144.86,
+      "seasonal_drift": 153.47,
+      "lower": 146.13,
+      "upper": 160.81,
+      "calibration_n": 41
+    },
+    {
+      "time": 66,
+      "actual": 150.0,
+      "seasonal_naive": 141.53,
+      "seasonal_drift": 150.14,
+      "lower": 142.8,
+      "upper": 157.48,
+      "calibration_n": 42
+    },
+    {
+      "time": 67,
+      "actual": 145.19,
+      "seasonal_naive": 133.77,
+      "seasonal_drift": 142.27,
+      "lower": 134.93,
+      "upper": 149.61,
+      "calibration_n": 43
+    },
+    {
+      "time": 68,
+      "actual": 143.76,
+      "seasonal_naive": 134.93,
+      "seasonal_drift": 143.54,
+      "lower": 136.2,
+      "upper": 150.88,
+      "calibration_n": 44
+    },
+    {
+      "time": 69,
+      "actual": 144.79,
+      "seasonal_naive": 134.19,
+      "seasonal_drift": 142.8,
+      "lower": 135.46,
+      "upper": 150.14,
+      "calibration_n": 45
+    },
+    {
+      "time": 70,
+      "actual": 144.95,
+      "seasonal_naive": 135.03,
+      "seasonal_drift": 143.86,
+      "lower": 136.52,
+      "upper": 151.2,
+      "calibration_n": 46
+    },
+    {
+      "time": 71,
+      "actual": 148.05,
+      "seasonal_naive": 129.95,
+      "seasonal_drift": 138.78,
+      "lower": 131.44,
+      "upper": 146.12,
+      "calibration_n": 47
+    }
+  ],
+  "limitations": [
+    "Intervals use historical residual quantiles, no finite-sample coverage guarantee.",
+    "Synthetic trend and seasonality do not establish real financial forecast performance."
+  ]
+}

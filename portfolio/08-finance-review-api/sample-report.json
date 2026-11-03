@@ -32,7 +32,7 @@
     {
       "actor": "demo-analyst",
       "method": "POST",
-      "path": "/v1/reviews/656511db81b8406b8d212f0c4436f747/approve",
+      "path": "/v1/reviews/af8a7df76acd4c6cb165439699d945fa/approve",
       "http_status": 403,
       "replayed": false,
       "result_status": null,
@@ -41,7 +41,7 @@
     {
       "actor": "demo-analyst",
       "method": "POST",
-      "path": "/v1/reviews/656511db81b8406b8d212f0c4436f747/submit",
+      "path": "/v1/reviews/af8a7df76acd4c6cb165439699d945fa/submit",
       "http_status": 200,
       "replayed": false,
       "result_status": "SUBMITTED",
@@ -50,7 +50,7 @@
     {
       "actor": "demo-approver",
       "method": "POST",
-      "path": "/v1/reviews/656511db81b8406b8d212f0c4436f747/approve",
+      "path": "/v1/reviews/af8a7df76acd4c6cb165439699d945fa/approve",
       "http_status": 409,
       "replayed": false,
       "result_status": null,
@@ -59,7 +59,7 @@
     {
       "actor": "demo-approver",
       "method": "POST",
-      "path": "/v1/reviews/656511db81b8406b8d212f0c4436f747/approve",
+      "path": "/v1/reviews/af8a7df76acd4c6cb165439699d945fa/approve",
       "http_status": 200,
       "replayed": false,
       "result_status": "APPROVED",
@@ -68,7 +68,7 @@
     {
       "actor": "demo-operator",
       "method": "POST",
-      "path": "/v1/reviews/656511db81b8406b8d212f0c4436f747/mock-post",
+      "path": "/v1/reviews/af8a7df76acd4c6cb165439699d945fa/mock-post",
       "http_status": 200,
       "replayed": false,
       "result_status": "MOCK_POSTED",
@@ -77,7 +77,7 @@
     {
       "actor": "demo-operator",
       "method": "POST",
-      "path": "/v1/reviews/656511db81b8406b8d212f0c4436f747/mock-post",
+      "path": "/v1/reviews/af8a7df76acd4c6cb165439699d945fa/mock-post",
       "http_status": 200,
       "replayed": true,
       "result_status": "MOCK_POSTED",
@@ -86,7 +86,7 @@
     {
       "actor": "demo-operator",
       "method": "POST",
-      "path": "/v1/reviews/656511db81b8406b8d212f0c4436f747/mock-post",
+      "path": "/v1/reviews/af8a7df76acd4c6cb165439699d945fa/mock-post",
       "http_status": 409,
       "replayed": false,
       "result_status": null,
@@ -95,7 +95,7 @@
     {
       "actor": "demo-approver",
       "method": "GET",
-      "path": "/v1/reviews/656511db81b8406b8d212f0c4436f747/events",
+      "path": "/v1/reviews/af8a7df76acd4c6cb165439699d945fa/events",
       "http_status": 200,
       "replayed": false,
       "result_status": null,
@@ -104,7 +104,7 @@
     {
       "actor": "demo-analyst",
       "method": "GET",
-      "path": "/v1/reviews/656511db81b8406b8d212f0c4436f747",
+      "path": "/v1/reviews/af8a7df76acd4c6cb165439699d945fa",
       "http_status": 200,
       "replayed": false,
       "result_status": "MOCK_POSTED",
@@ -115,47 +115,47 @@
   "final_version": 4,
   "snapshot_sha256": "121c9995bc2405f75149f579fd3caf10fa2e4b23eb61ce8f7daad9e5f132861f",
   "mock_receipt": {
-    "created_at": "2026-11-02T19:03:25.468323+00:00",
-    "receipt_id": "mock-c3d7c5bbbc404f119a4addd989e56263",
+    "created_at": "2026-11-03T08:44:46.793916+00:00",
+    "receipt_id": "mock-00c0b5561b734429a89617074424f641",
     "snapshot_sha": "121c9995bc2405f75149f579fd3caf10fa2e4b23eb61ce8f7daad9e5f132861f"
   },
   "events": [
     {
       "actor": "demo-analyst",
-      "created_at": "2026-11-02T19:03:25.442799+00:00",
+      "created_at": "2026-11-03T08:44:46.775558+00:00",
       "from_status": null,
       "note": "Snapshot created; source truth not verified.",
-      "review_id": "656511db81b8406b8d212f0c4436f747",
+      "review_id": "af8a7df76acd4c6cb165439699d945fa",
       "sequence": 1,
       "to_status": "DRAFT",
       "version": 1
     },
     {
       "actor": "demo-analyst",
-      "created_at": "2026-11-02T19:03:25.452606+00:00",
+      "created_at": "2026-11-03T08:44:46.783112+00:00",
       "from_status": "DRAFT",
       "note": "Evidence ready for independent review",
-      "review_id": "656511db81b8406b8d212f0c4436f747",
+      "review_id": "af8a7df76acd4c6cb165439699d945fa",
       "sequence": 2,
       "to_status": "SUBMITTED",
       "version": 2
     },
     {
       "actor": "demo-approver",
-      "created_at": "2026-11-02T19:03:25.462473+00:00",
+      "created_at": "2026-11-03T08:44:46.788906+00:00",
       "from_status": "SUBMITTED",
       "note": "Checked fictional source excerpt",
-      "review_id": "656511db81b8406b8d212f0c4436f747",
+      "review_id": "af8a7df76acd4c6cb165439699d945fa",
       "sequence": 3,
       "to_status": "APPROVED",
       "version": 3
     },
     {
       "actor": "demo-operator",
-      "created_at": "2026-11-02T19:03:25.468339+00:00",
+      "created_at": "2026-11-03T08:44:46.793932+00:00",
       "from_status": "APPROVED",
       "note": "Record local mock receipt only",
-      "review_id": "656511db81b8406b8d212f0c4436f747",
+      "review_id": "af8a7df76acd4c6cb165439699d945fa",
       "sequence": 4,
       "to_status": "MOCK_POSTED",
       "version": 4

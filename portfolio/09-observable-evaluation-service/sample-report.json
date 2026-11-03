@@ -19,7 +19,7 @@
         "id": 1,
         "status": "completed",
         "attempt": 1,
-        "latency_ms": 0.053,
+        "latency_ms": 0.084,
         "http_status": 200,
         "input_tokens": 12,
         "output_tokens": 7,

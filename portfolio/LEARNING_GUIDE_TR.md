@@ -128,3 +128,15 @@ kod ihtiyatlı üst sınırı bütçeye yazar. `test_reservations_atomic_under_c
 testinde eşzamanlı dört isteğin neden yalnızca birinin bütçeden geçebildiğini anlat.
 Gerçek model çağrısı yapılmadı; bu projeyi canlı entegrasyon veya üretim dağıtımı
 olarak özgeçmişinde sunma.
+
+## 10 — Bütçe istisnası sınıflandırma
+
+`sample-report.json` içindeki üç veri grubunu karşılaştır. Eşik yalnızca doğrulamada seçilir; test etiketleri eşik seçiminde kullanılmaz. Karışıklık matrisindeki yanlış negatif ve yanlış pozitifleri açıklayabilmelisin. Yapay etiketlerin özelliklerle aynı kuraldan türediğini unutma.
+
+## 11 — Finansal zaman serisi kıyaslaması
+
+İlk tahmin satırını geçmiş 12 ayın değeriyle karşılaştır. MASE paydasının yalnızca eğitim geçmişinden hesaplandığını doğrula. İleri bir aya çok büyük değer ekleyip önceki tahminlerin değişmediğini test et. Aralık kapsamasını garanti olarak sunma.
+
+## 12 — Finansal akıl yürütme deneyi
+
+Aynı 12 cevabın iki kontrol seçeneğiyle değerlendirildiğini gör. Yanlış birimlerdeki fark ile yanlış sayıların değişmeyen reddini açıkla. Bootstrap tohumları gerçek dünyada yeni örneklem veya bağımsız model denemesi değildir.

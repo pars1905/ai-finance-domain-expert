@@ -85,3 +85,5 @@ These are local portfolio prototypes, not production systems or real model bench
 
 
 Project 09 adds a [local observable evaluation service](portfolio/09-observable-evaluation-service/) with SQLite-backed quotas and synthetic upstream telemetry; no live model request has been verified.
+
+All twelve [portfolio projects](portfolio/README.md) are now runnable prototypes. Project 10 uses NumPy and scikit-learn; the remaining demos use the Python standard library. Examples are synthetic and require personal review before any CV claim.

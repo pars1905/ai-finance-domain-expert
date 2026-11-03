@@ -1,0 +1,129 @@
+{
+  "question": "Does checking the unit reduce false acceptance of authored financial answers?",
+  "scope": "deterministic checker ablation on authored gross-margin answers; no model or human participants",
+  "baseline_false_accept": 0.5,
+  "unit_check_false_accept": 0.0,
+  "paired_improvement": 0.5,
+  "bootstrap": [
+    {
+      "seed": 7,
+      "mean_improvement": 0.5065,
+      "percentile_interval": [
+        0.125,
+        0.875
+      ]
+    },
+    {
+      "seed": 11,
+      "mean_improvement": 0.5055,
+      "percentile_interval": [
+        0.125,
+        0.875
+      ]
+    },
+    {
+      "seed": 23,
+      "mean_improvement": 0.5022,
+      "percentile_interval": [
+        0.125,
+        0.875
+      ]
+    },
+    {
+      "seed": 47,
+      "mean_improvement": 0.5092,
+      "percentile_interval": [
+        0.25,
+        0.875
+      ]
+    },
+    {
+      "seed": 91,
+      "mean_improvement": 0.5068,
+      "percentile_interval": [
+        0.125,
+        0.875
+      ]
+    }
+  ],
+  "negative_result": "The unit check does not change rejection of wrong-number answers.",
+  "rows": [
+    {
+      "id": "0",
+      "kind": "correct",
+      "baseline_accept": true,
+      "unit_check_accept": true
+    },
+    {
+      "id": "1",
+      "kind": "wrong_unit",
+      "baseline_accept": true,
+      "unit_check_accept": false
+    },
+    {
+      "id": "2",
+      "kind": "wrong_number",
+      "baseline_accept": false,
+      "unit_check_accept": false
+    },
+    {
+      "id": "3",
+      "kind": "correct",
+      "baseline_accept": true,
+      "unit_check_accept": true
+    },
+    {
+      "id": "4",
+      "kind": "wrong_unit",
+      "baseline_accept": true,
+      "unit_check_accept": false
+    },
+    {
+      "id": "5",
+      "kind": "wrong_number",
+      "baseline_accept": false,
+      "unit_check_accept": false
+    },
+    {
+      "id": "6",
+      "kind": "correct",
+      "baseline_accept": true,
+      "unit_check_accept": true
+    },
+    {
+      "id": "7",
+      "kind": "wrong_unit",
+      "baseline_accept": true,
+      "unit_check_accept": false
+    },
+    {
+      "id": "8",
+      "kind": "wrong_number",
+      "baseline_accept": false,
+      "unit_check_accept": false
+    },
+    {
+      "id": "9",
+      "kind": "correct",
+      "baseline_accept": true,
+      "unit_check_accept": true
+    },
+    {
+      "id": "10",
+      "kind": "wrong_unit",
+      "baseline_accept": true,
+      "unit_check_accept": false
+    },
+    {
+      "id": "11",
+      "kind": "wrong_number",
+      "baseline_accept": false,
+      "unit_check_accept": false
+    }
+  ],
+  "limitations": [
+    "Cases deliberately contain wrong units; effect is fixture-dependent.",
+    "Bootstrap resamples authored cases and does not prove real-world generalization.",
+    "Seeds change uncertainty resampling, not the deterministic checker."
+  ]
+}

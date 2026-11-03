@@ -1,7 +1,6 @@
 # Twelve-project roadmap
 
-Projects 01–09 are implemented as local prototypes. Items 10–12 are plans, not completed work
-and must not be listed as completed CV projects. Build and understand them in order.
+Projects 01–12 are implemented as local portfolio prototypes. Understand and review each before listing it on a CV.
 
 | # | Role track | Project | Acceptance evidence |
 |---|---|---|---|
@@ -14,9 +13,9 @@ and must not be listed as completed CV projects. Build and understand them in or
 | 07 | Applied AI Engineer — Finance | [Cited Financial Document Assistant](07-cited-financial-assistant/) | Filtered lexical retrieval, exact source spans, structured draft/citation validation, separate authored development/holdout cases, secrets via environment — prototype implemented; real API request path mocked end-to-end, live model validation still pending |
 | 08 | Applied AI Engineer — Finance | [Finance Review API](08-finance-review-api/) | Authenticated loopback HTTP, role-separated approval, immutable report snapshots, persistent SQLite, transactional idempotency and optimistic version checks — real HTTP/concurrency/rollback tests implemented; local mock receipts only, no real ERP writes |
 | 09 | Applied AI Engineer — Finance | [Observable Evaluation Service](09-observable-evaluation-service/) | Local deployment instructions, per-attempt latency and token logging, bounded retries, SQLite rate/budget controls — synthetic transport and real loopback HTTP verified; live upstream not verified |
-| 10 | ML Engineer / Research Engineer preparation | Invoice Exception Classifier | Logistic-regression baseline, grouped train/validation/test split, threshold choice on validation only, class-imbalance metrics and model card |
-| 11 | ML Engineer / Research Engineer preparation | Financial Time-Series Forecast Benchmark | Rolling backtests, naive baseline, leakage checks, MAE/MASE, intervals and documented failure periods |
-| 12 | ML Engineer / Research Engineer preparation | Financial Reasoning Experiment | Explicit research question, baseline, controlled ablation, multiple seeds, uncertainty and reproducible negative results |
+| 10 | ML Engineer / Research Engineer preparation | [Budget Exception Classifier](10-budget-exception-classifier/) | Logistic-regression baseline, grouped train/validation/test split, validation threshold, imbalance metrics and model card — synthetic workflow implemented |
+| 11 | ML Engineer / Research Engineer preparation | [Financial Time-Series Forecast Benchmark](11-financial-forecast-benchmark/) | Rolling one-step forecasts, seasonal naive, leakage test, MAE/MASE and approximate intervals — synthetic benchmark implemented |
+| 12 | ML Engineer / Research Engineer preparation | [Financial Reasoning Experiment](12-financial-reasoning-experiment/) | Unit-check research question, paired baseline/ablation, seeded bootstrap and explicit negative result — authored deterministic experiment implemented |
 
 ## Progression rules
 

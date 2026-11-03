@@ -1,7 +1,7 @@
 # Finance AI portfolio — evaluation first
 
-Nine runnable projects, followed by three planned engineering/ML projects.
-Python 3.10+; standard library only. Default demos are local and need no external API keys.
+Twelve runnable portfolio projects across evaluation, finance automation and engineering/ML preparation.
+Python 3.10+; projects 01–09 and 11–12 use the standard library. Project 10 additionally needs NumPy and scikit-learn. Default demos are local and need no external API keys.
 Projects 04–07 optionally request model output with `--ai`; that mode needs
 your API credentials and may incur charges. No real-key call has been verified.
 These are local portfolio prototypes built with AI assistance, not deployed client work.
@@ -19,6 +19,9 @@ client documents, or measured model outputs.
 | 07 | [Cited Financial Document Assistant](07-cited-financial-assistant/) | Company/period-filtered BM25, exact spans, structured cited drafts | Runnable; live model pending |
 | 08 | [Finance Review API](08-finance-review-api/) | Authenticated loopback HTTP, SQLite, approval roles, atomic idempotency and concurrency | Runnable; real local HTTP verified |
 | 09 | [Observable Evaluation Service](09-observable-evaluation-service/) | Per-attempt latency/token telemetry, atomic local quotas, bounded retry | Runnable; mock upstream and real loopback HTTP verified |
+| 10 | [Budget Exception Classifier](10-budget-exception-classifier/) | Grouped split, validation threshold, imbalance metrics, model card | Runnable synthetic baseline |
+| 11 | [Financial Forecast Benchmark](11-financial-forecast-benchmark/) | Rolling backtest, seasonal naive, MASE, leakage check, intervals | Runnable synthetic benchmark |
+| 12 | [Financial Reasoning Experiment](12-financial-reasoning-experiment/) | Paired unit-check ablation, seeded bootstrap and negative result | Runnable authored experiment |
 
 From the repository root:
 
@@ -26,7 +29,7 @@ From the repository root:
 python portfolio/run_checks.py
 ```
 
-This runs 122 automated tests and regenerates nine `sample-report.json` files plus
+This runs 131 automated tests and regenerates twelve `sample-report.json` files plus
 Markdown reports for projects 04–08 and project 07's authored retrieval evaluation.
 Project 08 uses a temporary loopback HTTP server and database; UUIDs/timestamps vary.
 Each project accepts a custom JSON input.
@@ -58,6 +61,9 @@ Projects 04–06 use shared parent helpers; retain the portfolio folder structur
 9. Project 09 records synthetic upstream token use and measured local attempt latency.
    SQLite reservations enforce a single-file request and token allowance; a real
    upstream key has not been used to validate this integration.
+10. Project 10 uses generated budget exceptions; its group-isolated test is not a real-world accuracy estimate.
+11. Project 11 compares seasonal naive and drift forecasts on one synthetic monthly series.
+12. Project 12 tests a unit-check ablation on 12 authored answers, not model reasoning.
 
 See [ROADMAP.md](ROADMAP.md) for all 12 planned projects and acceptance criteria.
 See [LEARNING_GUIDE_TR.md](LEARNING_GUIDE_TR.md) before putting these on a CV.

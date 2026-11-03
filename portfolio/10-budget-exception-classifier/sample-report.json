@@ -1,0 +1,93 @@
+{
+  "scope": "synthetic grouped baseline; no real invoice or budget decisions",
+  "seed": 19,
+  "features": [
+    "variance_pct",
+    "absolute_variance",
+    "days_since_review",
+    "missing_evidence"
+  ],
+  "threshold_selected_on_validation": 0.25,
+  "train": {
+    "n": 144,
+    "positives": 59,
+    "precision": 0.5833,
+    "recall": 0.9492,
+    "f1": 0.7226,
+    "average_precision": 0.8369,
+    "confusion_matrix_tn_fp_fn_tp": [
+      45,
+      40,
+      3,
+      56
+    ],
+    "groups": [
+      "unit-01",
+      "unit-02",
+      "unit-03",
+      "unit-04",
+      "unit-05",
+      "unit-06",
+      "unit-07",
+      "unit-09",
+      "unit-13",
+      "unit-14",
+      "unit-15",
+      "unit-16",
+      "unit-18",
+      "unit-21",
+      "unit-23",
+      "unit-26",
+      "unit-27",
+      "unit-29"
+    ]
+  },
+  "validation": {
+    "n": 48,
+    "positives": 21,
+    "precision": 0.6333,
+    "recall": 0.9048,
+    "f1": 0.7451,
+    "average_precision": 0.7294,
+    "confusion_matrix_tn_fp_fn_tp": [
+      16,
+      11,
+      2,
+      19
+    ],
+    "groups": [
+      "unit-08",
+      "unit-10",
+      "unit-11",
+      "unit-17",
+      "unit-19",
+      "unit-22"
+    ]
+  },
+  "test": {
+    "n": 48,
+    "positives": 21,
+    "precision": 0.6061,
+    "recall": 0.9524,
+    "f1": 0.7407,
+    "average_precision": 0.846,
+    "confusion_matrix_tn_fp_fn_tp": [
+      14,
+      13,
+      1,
+      20
+    ],
+    "groups": [
+      "unit-00",
+      "unit-12",
+      "unit-20",
+      "unit-24",
+      "unit-25",
+      "unit-28"
+    ]
+  },
+  "limits": [
+    "Synthetic labels derive from correlated features and are not independent expert judgements.",
+    "Test results are descriptive for this one seeded fixture; no generalization claim."
+  ]
+}
