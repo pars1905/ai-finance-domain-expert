@@ -1,4 +1,4 @@
-"""Run all eight project suites and regenerate local sample reports."""
+"""Run all nine project suites and regenerate local sample reports."""
 import subprocess
 import sys
 from pathlib import Path
@@ -11,7 +11,8 @@ PROJECTS = [('01-financial-answer-evaluator', 'evaluate.py'),
             ('05-cash-collection-workbench', 'prioritize.py'),
             ('06-supplier-proposal-assistant', 'compare_bids.py'),
             ('07-cited-financial-assistant', 'assistant.py'),
-            ('08-finance-review-api', 'demo.py')]
+            ('08-finance-review-api', 'demo.py'),
+            ('09-observable-evaluation-service', 'demo.py')]
 
 subprocess.run([sys.executable, '-m', 'unittest', 'discover', '-v',
                 '-p', 'test_business_tools.py'], cwd=ROOT, check=True)

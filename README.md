@@ -83,3 +83,5 @@ Eight AI-assisted Python prototypes with synthetic fixtures, 114 automated tests
 
 These are local portfolio prototypes, not production systems or real model benchmarks. No confidential client data is included. Projects 04–07 include optional model adapters tested with mocked responses; no live model call has been verified. Project 07 has a separate authored retrieval evaluation, not a real-model benchmark. Project 08 is verified through real loopback HTTP, with no external ERP operation. Roadmap projects 09–12 remain planned.
 
+
+Project 09 adds a [local observable evaluation service](portfolio/09-observable-evaluation-service/) with SQLite-backed quotas and synthetic upstream telemetry; no live model request has been verified.

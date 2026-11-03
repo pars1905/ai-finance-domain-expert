@@ -1,0 +1,38 @@
+{
+  "scope": "synthetic local transport; no live OpenAI request or model validation",
+  "first": {
+    "status": "completed",
+    "request_id": 1,
+    "attempts": 1,
+    "observed_tokens": 19,
+    "output": "Fictional ExampleCo revenue: 120 million USD."
+  },
+  "second": {
+    "status": "rate_limit",
+    "request_id": null,
+    "attempts": 0
+  },
+  "telemetry": {
+    "scope": "local service telemetry; failed attempt usage can be an upper-bound estimate",
+    "requests": [
+      {
+        "id": 1,
+        "status": "completed",
+        "attempt": 1,
+        "latency_ms": 0.053,
+        "http_status": 200,
+        "input_tokens": 12,
+        "output_tokens": 7,
+        "outcome": "completed"
+      }
+    ],
+    "daily_reserved_or_observed_tokens": {
+      "2026-11-03": 19
+    }
+  },
+  "limitations": [
+    "Latency measures the injected transport call, not internet latency.",
+    "Rate and budget limits apply to this one local database, not a distributed deployment.",
+    "Failed attempts without reported usage consume a conservative budget estimate."
+  ]
+}

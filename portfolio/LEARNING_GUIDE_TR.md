@@ -117,3 +117,14 @@ kaydı yazılamazsa onay durumu, denetim olayı ve başarılı istek kaydı kıs
 ilerlemez. Bunun gerçek dış sistemlerle tek seferlik işlem garantisi olmadığını
 anlat. Yerel HTTP testi yapılmıştır; üretim ortamına dağıtım yapılmamıştır.
 
+
+## 09 — Gözlemlenebilir değerlendirme servisi
+
+`python portfolio/09-observable-evaluation-service/demo.py` komutunu çalıştır.
+İlk sentetik çağrının 19 bildirilmiş token, ikincinin dakika başına istek sınırı
+nedeniyle reddedildiğini gör. Gecikme gerçek yerel sahte taşıma çağrısının
+ölçümüdür; dış API gecikmesi değildir. Başarısız çağrıda token bilgisi gelmediğinde
+kod ihtiyatlı üst sınırı bütçeye yazar. `test_reservations_atomic_under_concurrency`
+testinde eşzamanlı dört isteğin neden yalnızca birinin bütçeden geçebildiğini anlat.
+Gerçek model çağrısı yapılmadı; bu projeyi canlı entegrasyon veya üretim dağıtımı
+olarak özgeçmişinde sunma.

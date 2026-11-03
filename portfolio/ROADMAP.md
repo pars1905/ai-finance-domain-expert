@@ -1,6 +1,6 @@
 # Twelve-project roadmap
 
-Projects 01–08 are implemented as local prototypes. Items 09–12 are plans, not completed work
+Projects 01–09 are implemented as local prototypes. Items 10–12 are plans, not completed work
 and must not be listed as completed CV projects. Build and understand them in order.
 
 | # | Role track | Project | Acceptance evidence |
@@ -13,7 +13,7 @@ and must not be listed as completed CV projects. Build and understand them in or
 | 06 | AI Business Analyst / Finance Automation Consultant | [Supplier Proposal Comparison Assistant](06-supplier-proposal-assistant/) | Fictional supplier bids, required-criteria checks, total-cost normalization, evidence-linked tradeoffs and weight sensitivity; flag missing data and keep supplier selection with the reviewer — implemented as offline prototype; optional AI adapter mocked, not live verified |
 | 07 | Applied AI Engineer — Finance | [Cited Financial Document Assistant](07-cited-financial-assistant/) | Filtered lexical retrieval, exact source spans, structured draft/citation validation, separate authored development/holdout cases, secrets via environment — prototype implemented; real API request path mocked end-to-end, live model validation still pending |
 | 08 | Applied AI Engineer — Finance | [Finance Review API](08-finance-review-api/) | Authenticated loopback HTTP, role-separated approval, immutable report snapshots, persistent SQLite, transactional idempotency and optimistic version checks — real HTTP/concurrency/rollback tests implemented; local mock receipts only, no real ERP writes |
-| 09 | Applied AI Engineer — Finance | Observable Evaluation Service | Deployment instructions, real latency/token logging, bounded retries, rate limits and budget controls; live verification separately recorded |
+| 09 | Applied AI Engineer — Finance | [Observable Evaluation Service](09-observable-evaluation-service/) | Local deployment instructions, per-attempt latency and token logging, bounded retries, SQLite rate/budget controls — synthetic transport and real loopback HTTP verified; live upstream not verified |
 | 10 | ML Engineer / Research Engineer preparation | Invoice Exception Classifier | Logistic-regression baseline, grouped train/validation/test split, threshold choice on validation only, class-imbalance metrics and model card |
 | 11 | ML Engineer / Research Engineer preparation | Financial Time-Series Forecast Benchmark | Rolling backtests, naive baseline, leakage checks, MAE/MASE, intervals and documented failure periods |
 | 12 | ML Engineer / Research Engineer preparation | Financial Reasoning Experiment | Explicit research question, baseline, controlled ablation, multiple seeds, uncertainty and reproducible negative results |
