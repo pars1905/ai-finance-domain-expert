@@ -1,6 +1,8 @@
 import concurrent.futures
 import http.client
+import io
 import json
+import os
 import sqlite3
 import tempfile
 import threading
@@ -20,6 +22,25 @@ def success(payload, key, timeout):
 
 
 class ServiceTests(unittest.TestCase):
+    def test_gemini_transport_and_quota_accounting(self):
+        upstream = io.BytesIO(json.dumps({
+            'candidates': [{'finishReason': 'STOP', 'content': {'parts': [{'text': 'Synthetic answer'}]}}],
+            'usageMetadata': {'promptTokenCount': 2, 'candidatesTokenCount': 3,
+                              'thoughtsTokenCount': 4},
+        }).encode())
+        upstream.status = 200
+        environment = {'AI_PROVIDER': 'gemini', 'GEMINI_API_KEY': KEY,
+                       'GEMINI_MODEL': 'gemini-mock', 'GEMINI_FREE_TIER_CONFIRMED': '1'}
+        with patch.dict(os.environ, environment, clear=True), \
+                patch('service.urllib.request.build_opener') as opener:
+            opener.return_value.open.return_value = upstream
+            result = run_evaluation(self.path, 'hello', 'gemini-mock', KEY, now=1760000000)
+            request = opener.return_value.open.call_args.args[0]
+            self.assertIn('generativelanguage.googleapis.com', request.full_url)
+        self.assertEqual(result['status'], 'completed')
+        self.assertEqual(result['observed_tokens'], 9)
+        self.assertEqual(list(metrics(self.path)['daily_reserved_or_observed_tokens'].values()), [9])
+
     def test_non_json_error_respects_http_retry_policy(self):
         for code, expected_attempts in ((401, 1), (400, 1), (503, 3)):
             with self.subTest(code=code):

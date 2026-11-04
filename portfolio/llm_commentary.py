@@ -1,18 +1,18 @@
-"""Optional bounded OpenAI Responses call. Never used by the offline demos."""
+"""Optional bounded OpenAI/Gemini call. Never used by the offline demos."""
 import copy
 import hashlib
 import json
-import os
 import time
 import urllib.error
 import urllib.request
+from model_provider import settings, request_for, normalize_response
 
 
 def summarize(report, transport=None):
-    key = os.environ.get('OPENAI_API_KEY', '').strip()
-    model = os.environ.get('OPENAI_MODEL', '').strip()
-    if not key or not model:
-        return {'status': 'unavailable', 'reason': 'Set OPENAI_API_KEY and OPENAI_MODEL explicitly.'}
+    try:
+        provider, key, model = settings()
+    except ValueError as exc:
+        return {'status': 'unavailable', 'reason': str(exc)}
     payload_report = copy.deepcopy(report)
     payload_report.pop('ai_commentary', None)
     content = json.dumps(payload_report, ensure_ascii=False, allow_nan=False)
@@ -25,10 +25,10 @@ def summarize(report, transport=None):
                'Separate calculated observations from questions for human review. '
                'Do not authorize any action or change any score. All examples may be synthetic.',
                'input': content}
-    request = urllib.request.Request('https://api.openai.com/v1/responses',
-                                     data=json.dumps(payload).encode(), method='POST',
-                                     headers={'Authorization': f'Bearer {key}', 'Content-Type': 'application/json'})
-    # Disallow redirects so credentials cannot be forwarded to another host.
+    try:
+        request = request_for(payload, key, provider)
+    except ValueError:
+        return {'status': 'unavailable', 'reason': 'Invalid provider/model configuration.'}
     class NoRedirect(urllib.request.HTTPRedirectHandler):
         def redirect_request(self, req, fp, code, msg, headers, newurl):
             return None
@@ -39,7 +39,7 @@ def summarize(report, transport=None):
             raw = response.read(1000001)
         if len(raw) > 1000000:
             raise ValueError('Response too large')
-        result = json.loads(raw)
+        result = normalize_response(json.loads(raw), provider)
         if not isinstance(result, dict):
             raise ValueError('Malformed response')
         if result.get('status') != 'completed':
@@ -57,10 +57,10 @@ def summarize(report, transport=None):
         if not fragments or any(not isinstance(x, str) for x in fragments):
             raise ValueError('No completed text')
         return {'status': 'unverified_ai_commentary', 'text': '\n'.join(fragments),
-                'model': result.get('model', model), 'response_id': result.get('id'),
+                'provider': provider, 'model': result.get('model') or model, 'response_id': result.get('id'),
                 'usage': result.get('usage'), 'latency_ms': round((time.monotonic() - started) * 1000),
                 'submitted_report_sha256': hashlib.sha256(content.encode()).hexdigest(),
                 'prompt_version': 'finance-briefing-v1', 'human_review_required': True}
-    except (OSError, ValueError, TypeError, KeyError):
+    except (OSError, ValueError, TypeError, KeyError, AttributeError):
         # Do not print HTTP bodies, credentials or potentially sensitive prompts.
         return {'status': 'unavailable', 'reason': 'API/network/response error; calculations are preserved.'}

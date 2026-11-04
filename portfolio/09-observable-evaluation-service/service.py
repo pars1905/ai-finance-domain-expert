@@ -5,6 +5,7 @@ import hmac
 import json
 import os
 import sqlite3
+import sys
 import time
 import urllib.error
 import urllib.request
@@ -12,6 +13,8 @@ from datetime import datetime, timezone
 from contextlib import closing
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from model_provider import settings, request_for, normalize_response
 
 ROOT = Path(__file__).resolve().parent
 MAX_BODY = 8192
@@ -61,18 +64,23 @@ def record(path, rid, attempt, latency, http_status, input_tokens, output_tokens
 
 
 def real_transport(payload, key, timeout):
-    req = urllib.request.Request('https://api.openai.com/v1/responses',
-        data=json.dumps(payload).encode(), method='POST',
-        headers={'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json'})
+    provider, _, _ = settings()
+    req = request_for(payload, key, provider)
     class NoRedirect(urllib.request.HTTPRedirectHandler):
         def redirect_request(self, request, fp, code, msg, headers, newurl):
             return None
     opener = urllib.request.build_opener(NoRedirect)
     try:
         with opener.open(req, timeout=timeout) as response:
-            return response.status, response.read(65537)
+            raw = response.read(65537)
+            if len(raw) > 65536:
+                raise ValueError('Upstream response too large')
+            if provider == 'gemini':
+                raw = json.dumps(normalize_response(json.loads(raw), provider)).encode()
+            return response.status, raw
     except urllib.error.HTTPError as exc:
-        return exc.code, exc.read(65537)
+        with exc:
+            return exc.code, exc.read(65537)
 
 
 def run_evaluation(path, prompt, model, api_key, daily_budget=6000, per_minute=5,
@@ -251,10 +259,12 @@ def main():
     parser.add_argument('--requests-per-minute', type=int, default=5)
     args = parser.parse_args()
     token = os.environ.get('EVAL_SERVICE_TOKEN', '')
-    key = os.environ.get('OPENAI_API_KEY', '')
-    model = os.environ.get('OPENAI_MODEL', '')
+    try:
+        _, key, model = settings()
+    except ValueError as exc:
+        parser.exit(2, f'Configuration error: {exc}.\n')
     if len(token) < 32 or not key or not model or args.daily_token_budget < 1 or args.requests_per_minute < 1 or not 0 <= args.port <= 65535:
-        parser.exit(2, 'Configuration error: valid EVAL_SERVICE_TOKEN (32+), OPENAI_API_KEY, OPENAI_MODEL and positive limits required.\n')
+        parser.exit(2, 'Configuration error: valid EVAL_SERVICE_TOKEN (32+), provider credentials/model and positive limits required.\n')
     db(args.db).close()
     with Server(('127.0.0.1', args.port), handler(args.db, token, model, key, args.daily_token_budget, args.requests_per_minute)) as server:
         print('Local evaluation service ready on 127.0.0.1:' + str(server.server_port), flush=True)

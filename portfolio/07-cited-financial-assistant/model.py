@@ -1,9 +1,12 @@
-"""Opt-in Responses API structured generation. No model calls in offline demos."""
+"""Opt-in OpenAI/Gemini structured generation. No model calls in offline demos."""
 import hashlib
 import json
-import os
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import time
 import urllib.request
+from model_provider import settings, request_for, normalize_response
 from datetime import datetime, timezone
 
 SCHEMA = {'type': 'object', 'additionalProperties': False,
@@ -19,10 +22,10 @@ SCHEMA = {'type': 'object', 'additionalProperties': False,
 
 
 def generate(query, evidence, transport=None):
-    key = os.environ.get('OPENAI_API_KEY', '').strip()
-    model = os.environ.get('OPENAI_MODEL', '').strip()
-    if not key or not model:
-        return {'status': 'unavailable', 'reason': 'Explicit OPENAI_API_KEY and OPENAI_MODEL required.'}
+    try:
+        provider, key, model = settings()
+    except ValueError as exc:
+        return {'status': 'unavailable', 'reason': str(exc)}
     content = json.dumps({'question': query, 'evidence': evidence}, ensure_ascii=False, allow_nan=False)
     if len(content.encode()) > 30000:
         return {'status': 'unavailable', 'reason': 'Context exceeds 30 KB cap.'}
@@ -37,9 +40,10 @@ def generate(query, evidence, transport=None):
                'calculations not explicitly supplied. For missing evidence return insufficient_evidence '
                'with an empty claims array. Use the question language when possible.',
                'input': content}
-    request = urllib.request.Request('https://api.openai.com/v1/responses', method='POST',
-               data=json.dumps(payload).encode(),
-               headers={'Authorization': f'Bearer {key}', 'Content-Type': 'application/json'})
+    try:
+        request = request_for(payload, key, provider)
+    except ValueError:
+        return {'status': 'unavailable', 'reason': 'Invalid provider/model configuration.'}
     class NoRedirect(urllib.request.HTTPRedirectHandler):
         def redirect_request(self, req, fp, code, msg, headers, newurl):
             return None
@@ -51,7 +55,7 @@ def generate(query, evidence, transport=None):
             raw = response.read(1000001)
         if len(raw) > 1000000:
             raise ValueError('Response too large')
-        response = json.loads(raw)
+        response = normalize_response(json.loads(raw), provider)
         if not isinstance(response, dict) or response.get('status') != 'completed':
             raise ValueError('Response did not complete')
         fragments = []
@@ -68,11 +72,11 @@ def generate(query, evidence, transport=None):
                         fragments.append(part['text'])
         candidate = json.loads(''.join(fragments))
         return {'status': 'received', 'candidate': candidate,
-                'metadata': {'model': response.get('model', model), 'response_id': response.get('id'),
+                'metadata': {'provider': provider, 'model': response.get('model') or model, 'response_id': response.get('id'),
                              'usage': response.get('usage'),
                              'submitted_at_utc': submitted_at,
                              'latency_ms': round((time.monotonic() - started) * 1000),
                              'submitted_context_sha256': hashlib.sha256(content.encode()).hexdigest(),
                              'prompt_version': 'cited-finance-v1'}}
-    except (OSError, ValueError, TypeError, KeyError):
+    except (OSError, ValueError, TypeError, KeyError, AttributeError):
         return {'status': 'unavailable', 'reason': 'API/network/structured-response failure.'}

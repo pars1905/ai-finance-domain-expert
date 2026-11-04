@@ -14,6 +14,23 @@ ROOT = Path(__file__).resolve().parent
 
 
 class CitedAssistantTests(unittest.TestCase):
+    def test_gemini_structured_generation_and_citations(self):
+        def fake(request, timeout):
+            payload = json.loads(request.data)
+            self.assertIn('responseJsonSchema', payload['generationConfig'])
+            self.assertEqual(request.get_header('X-goog-api-key'), 'mock-gemini-key')
+            return io.BytesIO(json.dumps({
+                'candidates': [{'finishReason': 'STOP', 'content': {'parts': [
+                    {'text': json.dumps(self.candidate)}]}}],
+                'usageMetadata': {'promptTokenCount': 100, 'candidatesTokenCount': 30},
+                'modelVersion': 'gemini-mock',
+            }).encode())
+        with patch.dict(os.environ, {'AI_PROVIDER': 'gemini', 'GEMINI_API_KEY': 'mock-gemini-key',
+                'GEMINI_MODEL': 'gemini-mock', 'GEMINI_FREE_TIER_CONFIRMED': '1'}, clear=True):
+            result = answer(self.corpus, self.query, 'ExampleCo', 'FY2025', True, fake)
+        self.assertEqual(result['generated_answer']['status'], 'validated_citations_unverified_meaning')
+        self.assertEqual(result['generated_answer']['metadata']['provider'], 'gemini')
+
     def setUp(self):
         self.corpus = json.loads((ROOT / 'corpus.json').read_text())
         self.query = 'What was ExampleCo revenue in FY2025?'

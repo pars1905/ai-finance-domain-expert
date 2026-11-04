@@ -24,7 +24,7 @@ args = parser.parse_args()
 output_root = args.output_dir.resolve() if args.output_dir else ROOT
 
 subprocess.run([sys.executable, '-m', 'unittest', 'discover', '-v',
-                '-p', 'test_business_tools.py'], cwd=ROOT, check=True)
+                '-p', 'test_*.py'], cwd=ROOT, check=True)
 
 for folder, script in PROJECTS:
     path = ROOT / folder

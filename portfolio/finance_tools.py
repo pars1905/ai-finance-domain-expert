@@ -87,7 +87,7 @@ def cli(analyze, default_input):
     parser.add_argument('input', nargs='?', type=Path, default=Path(default_input))
     parser.add_argument('--output', type=Path)
     parser.add_argument('--markdown', type=Path)
-    parser.add_argument('--ai', action='store_true', help='Send report to OpenAI; requires key and model')
+    parser.add_argument('--ai', action='store_true', help='Send report to the configured provider; requires key and model')
     args = parser.parse_args()
     try:
         report = analyze(json.loads(args.input.read_text()))

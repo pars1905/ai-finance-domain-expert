@@ -32,6 +32,8 @@ curl -sS -H "Authorization: Bearer $EVAL_SERVICE_TOKEN" http://127.0.0.1:8081/v1
 
 An actual request can incur API charges. The example has **not** been verified with a real key, so upstream compatibility and latency must be confirmed in the user's environment. Keep real financial/customer data out of experiments until access and privacy arrangements are settled. The service binds to loopback only; it has no TLS, identity provider, multi-tenant separation, deployment automation, distributed quotas or production hardening. Protect `telemetry.db` as local operational data.
 
+For Gemini, use the provider settings in [Gemini setup](../GEMINI.md) instead of the two OpenAI variables. Keep `EVAL_SERVICE_TOKEN` for local HTTP authentication.
+
 ## Accounting and boundaries
 
 - A prompt is limited to 2,000 characters and 8 KiB JSON body; output to 256 tokens. One call times out after ten seconds. Three attempts at most, with 0.1/0.2-second backoff. This is a request attempt bound, not a strict total wall-clock timeout.

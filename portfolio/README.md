@@ -3,7 +3,8 @@
 Twelve runnable portfolio projects across evaluation, finance automation and engineering/ML preparation.
 Python 3.10+; projects 01–09 and 11–12 use the standard library. Project 10 additionally needs NumPy and scikit-learn. Default demos are local and need no external API keys.
 Projects 04–07 optionally request model output with `--ai`; that mode needs
-your API credentials and may incur charges. No real-key call has been verified.
+your API credentials and may incur charges. OpenAI and Gemini are supported;
+see [Gemini setup](GEMINI.md) for the explicit free-tier confirmation guard. No real-key call has been verified.
 These are local portfolio prototypes built with AI assistance, not deployed client work.
 All examples are authored synthetic data; none are actual Mercor prompts, responses,
 client documents, or measured model outputs.
@@ -34,7 +35,7 @@ python portfolio/run_checks.py --output-dir /tmp/finance-portfolio-reports
 
 `--output-dir` keeps generated reports outside the checkout. Omit it to regenerate the committed sample reports. GitHub Actions runs the same checks on Python 3.10 and 3.12.
 
-This runs 142 automated tests and regenerates twelve `sample-report.json` files plus
+This runs 150 automated tests and regenerates twelve `sample-report.json` files plus
 Markdown reports for projects 04–08 and project 07's authored retrieval evaluation.
 Project 08 uses a temporary loopback HTTP server and database; UUIDs/timestamps vary.
 Each project accepts a custom JSON input.
